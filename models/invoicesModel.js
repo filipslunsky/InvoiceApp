@@ -18,7 +18,7 @@ const _getInvoiceById = (id) => {
     const result = readJsonFile();
     const data = result.find((item) => item.id.toLowerCase() === id.toLowerCase());
     if (data) {
-        return {success: true, message: 'invoice found', data};
+        return {success: true, message: 'invoice found', invoice: data};
     } else {
         return {success: false, message: 'invoice not found'};
     };
@@ -27,7 +27,7 @@ const _getInvoiceById = (id) => {
 const _getAllInvoices = () => {
     const data = readJsonFile();
     if (data) {
-        return {success: true, message: 'invoices found', data};
+        return {success: true, message: 'invoices found', invoices: data};
     } else {
         return {success: false, message: 'no invoices not found'};
     };
@@ -47,7 +47,7 @@ const _addInvoice = (newInvoice) => {
 
     data.push(newInvoice);
     writeJsonFile(data);
-    return { success: true, message: 'new invoice added successfully', data: newInvoice };
+    return { success: true, message: 'new invoice added successfully', invoice: newInvoice };
 };
 
 const _updateInvoiceById = (id, updatedInvoice) => {
@@ -58,7 +58,7 @@ const _updateInvoiceById = (id, updatedInvoice) => {
     } else {
         data[index] = { ...data[index], ...updatedInvoice };
         writeJsonFile(data);
-        return {success: true, message: 'invoice updated successfully', data};
+        return {success: true, message: 'invoice updated successfully', inovices: data};
     };
 };
 

@@ -1,10 +1,11 @@
-import './App.css'
+import InvoiceList from './features/invoices/InvoiceList';
+import './App.css';
 
 function App() {
 
   return (
     <>
-
+      <InvoiceList />
     </>
   )
 }
