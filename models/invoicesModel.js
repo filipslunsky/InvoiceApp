@@ -1,6 +1,5 @@
 const { db } = require('../config/db.js');
 
-// full invoices queries
 const _getInvoiceById = async (id) => {
     try {
         const invoice = await db('invoices')
