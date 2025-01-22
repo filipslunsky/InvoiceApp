@@ -13,7 +13,7 @@ const InvoiceList = () => {
 
     return (
         <>
-        
+            <h2>Invoice List</h2>
         </>
     );
 }
