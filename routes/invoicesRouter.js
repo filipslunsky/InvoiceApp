@@ -12,7 +12,7 @@ const invoicesRouter = Router();
 invoicesRouter.get('/', getAllInvoices);
 invoicesRouter.get('/:id', getInvoiceById);
 invoicesRouter.post('/', addInvoice);
-invoicesRouter.put('/:id', updateInvoiceById);
+invoicesRouter.post('/:id', updateInvoiceById);
 invoicesRouter.delete('/:id', deleteInvoice);
 
 module.exports = invoicesRouter;

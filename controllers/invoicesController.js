@@ -6,54 +6,79 @@ const {
     _deleteInvoice,
 } = require('../models/invoicesModel.js');
 
-const getInvoiceById = (req, res) => {
+const getInvoiceById = async (req, res) => {
     const { id } = req.params;
-    const data = _getInvoiceById(id);
-    if (data.success) {
-        res.status(200).json(data);
-    } else {
-        res.status(404).json(data);
+    try {
+        const data = await _getInvoiceById(id);
+        if (data.success) {
+            res.status(200).json(data);
+        } else {
+            res.status(404).json(data);
+        };
+    } catch (error) {
+        console.log('Error:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
     };    
 };
 
-const getAllInvoices = (req, res) => {
-    const data = _getAllInvoices();
-    if (data.success) {
-        res.status(200).json(data);
-    } else {
-        res.status(404).json(data);
-    };
+const getAllInvoices = async (req, res) => {
+    try {
+        const data = await _getAllInvoices();
+        if (data.success) {
+            res.status(200).json(data);
+        } else {
+            res.status(404).json(data);
+        };
+    } catch (error) {
+        console.log('Error:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
 };
 
-const addInvoice = (req, res) => {
-    const { newInvoice } = req.body;
-    const data = _addInvoice(newInvoice);
-    if (data.success) {
-        res.status(200).json(data);
-    } else {
-        res.status(400).json(data);
-    };
+const addInvoice = async (req, res) => {
+    const { invoiceData } = await req.body;
+    try {
+        const data = await _addInvoice(invoiceData);
+        if (data.success) {
+            res.status(200).json(data);
+        } else {
+            res.status(400).json(data);
+        };
+    } catch (error) {
+        console.log('Error:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
 };
 
-const updateInvoiceById = (req, res) => {
+const updateInvoiceById = async (req, res) => {
     const { id } = req.params;
     const { invoiceData } = req.body;
-    const data = _updateInvoiceById(id, invoiceData);
-    if (data.success) {
-        res.status(200).json(data);
-    } else {
-        res.status(404).json(data);
-    };
+    try {
+            const data = await _updateInvoiceById(id, invoiceData);
+        if (data.success) {
+            res.status(200).json(data);
+        } else {
+            res.status(404).json(data);
+        };
+    } catch (error) {
+        console.log('Error:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
 };
 
-const deleteInvoice = (req, res) => {
+const deleteInvoice = async (req, res) => {
     const { id } = req.params;
-    const data = _deleteInvoice(id);
-    if (data.success) {
-        res.status(200).json(data);
-    } else {
-        res.status(404).json(data);
-    };
+    try {
+        const data = await _deleteInvoice(id);
+        if (data.success) {
+            res.status(200).json(data);
+        } else {
+            res.status(404).json(data);
+        };    
+    } catch (error) {
+        console.log('Error:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
 };
 
 module.exports = {
