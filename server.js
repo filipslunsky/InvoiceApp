@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
+const invoicesRouter = require('./routes/invoicesRouter.js');
+
 const PORT = process.env.PORT || 3001;
 
 const app = express();
@@ -11,11 +13,9 @@ app.listen(PORT, () => {
 });
 
 app.use(cors());
+app.use(express.json());
 
-app.get('/invoices', (req, res) => {
-    const invoices = require('./config/data/data.json');
-    res.json(invoices);
-});
+app.use('/invoices', invoicesRouter);
 
 app.use(express.static(path.join(__dirname, "/client/dist")));
 app.get("*", (req, res) => {
