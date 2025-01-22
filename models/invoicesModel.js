@@ -62,9 +62,21 @@ const _updateInvoiceById = (id, updatedInvoice) => {
     };
 };
 
+const _deleteInvoice = (id) => {
+    const data = readJsonFile();
+    const filteredData = data.filter((item) => item.id.toLowerCase() !== id.toLowerCase());
+    if (filteredData.length === data.length) {
+        return {success: false, message: 'invoice not found'};
+    } else {
+        writeJsonFile(filteredData);
+        return {success: true, message: `invoice ${id} successfully deleted`};
+    };
+};
+
 module.exports = {
     _getInvoiceById,
     _getAllInvoices,
     _addInvoice,
     _updateInvoiceById,
+    _deleteInvoice,
 };

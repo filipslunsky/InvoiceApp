@@ -3,6 +3,7 @@ const {
     _getAllInvoices,
     _addInvoice,
     _updateInvoiceById,
+    _deleteInvoice,
 } = require('../models/invoicesModel.js');
 
 const getInvoiceById = (req, res) => {
@@ -45,9 +46,20 @@ const updateInvoiceById = (req, res) => {
     };
 };
 
+const deleteInvoice = (req, res) => {
+    const { id } = req.params;
+    const data = _deleteInvoice(id);
+    if (data.success) {
+        res.status(200).json(data);
+    } else {
+        res.status(404).json(data);
+    };
+};
+
 module.exports = {
     getInvoiceById,
     getAllInvoices,
     addInvoice,
     updateInvoiceById,
+    deleteInvoice,
 };
