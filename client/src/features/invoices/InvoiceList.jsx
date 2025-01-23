@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { getInvoices } from "./state/slice";
+import { getInvoices, toggleNewInvoice } from "./state/slice";
 import InvoiceItem from "./InvoiceItem";
+import NewInvoice from "./NewInvoice";
 
 const InvoiceList = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const invoices = useSelector(state => state.invoices.invoices);
+    const newInvoice = useSelector(state => state.invoices.newInvoice);
 
     const [invoiceStatus, setInvoiceStatus] = useState('');
     const [filteredInvoices, setFilteredInvoices] = useState(invoices);
@@ -30,7 +30,7 @@ const InvoiceList = () => {
     };
 
     const handleClickNew = () => {
-        navigate('/new');
+        dispatch(toggleNewInvoice());
     };
 
     return (
@@ -67,6 +67,13 @@ const InvoiceList = () => {
                     })
                 }
             </div>
+            {
+                newInvoice
+                ?
+                <NewInvoice />
+                :
+                ''
+            }
         </>
     );
 }
