@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getInvoices } from "./state/slice";
@@ -7,17 +7,21 @@ const InvoiceList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const statusRef = useRef();
-
     const invoices = useSelector(state => state.invoices.invoices);
+
+    const [invoiceStatus, setInvoiceStatus] = useState('');
+    const [filteredInvoices, setFilteredInvoices] = useState(invoices);
 
     useEffect(() => {
         dispatch(getInvoices());
     }, []);
 
-    const handleSelect = () => {
-        const status = statusRef.current.value;
-        console.log(status);
+    useEffect(() => {
+        setFilteredInvoices(invoices.filter(item => item.status.includes(invoiceStatus)));
+    }, [invoiceStatus]);
+
+    const handleSelect = (e) => {
+        setInvoiceStatus(e.target.value);
     };
 
     const handleClickNew = () => {
@@ -33,8 +37,8 @@ const InvoiceList = () => {
                     <select
                     name="statusFilter"
                     id="statusFilter"
-                    onChange={handleSelect}
-                    ref={statusRef}
+                    onChange={(e) => {handleSelect(e)}}
+                    defaultValue={invoiceStatus}
                     >
                         <option value="">Filter by status</option>
                         <option value="draft">draft</option>
