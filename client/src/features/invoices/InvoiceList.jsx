@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getInvoices } from "./state/slice";
+import InvoiceItem from "./InvoiceItem";
 
 const InvoiceList = () => {
     const dispatch = useDispatch();
@@ -15,6 +16,10 @@ const InvoiceList = () => {
     useEffect(() => {
         dispatch(getInvoices());
     }, []);
+
+    useEffect(() => {
+        setFilteredInvoices(invoices);
+    }, [invoices]);
 
     useEffect(() => {
         setFilteredInvoices(invoices.filter(item => item.status.includes(invoiceStatus)));
@@ -47,6 +52,20 @@ const InvoiceList = () => {
                     </select>
                     <button className="newInvoiceButton" onClick={handleClickNew}>+</button>
                 </div>
+                {
+                    filteredInvoices.map(item => {
+                        return (
+                            <InvoiceItem
+                            key={item.invoice_id}
+                            invoiceId={item.invoice_id}
+                            dueDate={item.payment_due}
+                            clientName={item.client_name}
+                            total={item.total}
+                            invoiceStatus={item.status}
+                            />
+                        )
+                    })
+                }
             </div>
         </>
     );
