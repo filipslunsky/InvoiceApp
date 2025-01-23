@@ -1,10 +1,8 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleNewInvoice } from "./state/slice";
 
 const NewInvoice = () => {
     const dispatch = useDispatch();
-
-    const newInvoice = useSelector(state => state.invoices.newInvoice);
 
     const handleCancelClick = () => {
         dispatch(toggleNewInvoice());
