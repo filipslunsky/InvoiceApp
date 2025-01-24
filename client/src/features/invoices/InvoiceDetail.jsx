@@ -20,7 +20,7 @@ const InvoiceDetail = () => {
 
     useEffect(() => {
         dispatch(getInvoices());
-    }, [deleteInvoiceStatus]);
+    }, [deleteInvoiceStatus, editInvoiceStatus]);
 
     const thisInvoice = invoices.filter(item => item.invoice_id == id)[0];
 
@@ -52,6 +52,16 @@ const InvoiceDetail = () => {
     const handleClickDeleteYes = () => {
         dispatch(deleteInvoice(id));
         navigate('/invoices');
+    };
+
+    const handleClickPaid = () => {
+        const invoiceData = {...thisInvoice, status: 'paid'};
+        dispatch(editInvoice(invoiceData));
+    };
+    
+    const handleClickUnpaid = () => {
+        const invoiceData = {...thisInvoice, status: 'pending'};
+        dispatch(editInvoice(invoiceData));
     };
 
     if (!thisInvoice) {
@@ -87,9 +97,9 @@ const InvoiceDetail = () => {
                             {
                                 thisInvoice.status === 'pending'
                                 ?
-                                <button className="invoiceDetailMarkButton">Mark as Paid</button>
+                                <button className="invoiceDetailMarkButton" onClick={handleClickPaid}>Mark as Paid</button>
                                 :
-                                <button className="invoiceDetailMarkButton">Mark as Unpaid</button>
+                                <button className="invoiceDetailMarkButton" onClick={handleClickUnpaid}>Mark as Unpaid</button>
                             }
                     </div>
                 </div>

@@ -53,6 +53,7 @@ const addInvoice = async (req, res) => {
 const updateInvoiceById = async (req, res) => {
     const { id } = req.params;
     const { invoiceData } = req.body;
+    
     try {
             const data = await _updateInvoiceById(id, invoiceData);
         if (data.success) {

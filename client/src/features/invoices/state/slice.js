@@ -25,18 +25,20 @@ export const getInvoices = createAsyncThunk('inovices/getInvoices', async (_, { 
     }
 });
 
+// fix the sending invoiceData to the body
 export const createNewInvoice = createAsyncThunk('invoices/createNewInvoice', async (invoiceData, { rejectWithValue}) => {
     try {
-        const response = await axios.post(INVOICES_URL);
+        const response = await axios.post(INVOICES_URL, {invoiceData});
         return response.data;
     } catch (error) {
         return rejectWithValue(error.response?.data?.message || error.message);
     }
 });
 
+// fix the sending invoiceData to the body
 export const editInvoice = createAsyncThunk('invoices/editInvoice', async (invoiceData, { rejectWithValue}) => {
     try {
-        const response = await axios.post(`${INVOICES_URL}/${invoiceData.invoice_id}`);
+        const response = await axios.post(`${INVOICES_URL}/${invoiceData.invoice_id}`, {invoiceData});
         return response.data;
     } catch (error) {
         return rejectWithValue(error.response?.data?.message || error.message);

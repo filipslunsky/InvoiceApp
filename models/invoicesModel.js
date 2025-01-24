@@ -100,8 +100,6 @@ const _addInvoice = async (newInvoice) => {
 
 
 const _updateInvoiceById = async (id, updatedInvoice) => {
-    console.log(id);
-    console.log(updatedInvoice);
     try {
         const existingInvoice = await db('invoices')
             .where('invoice_id', id)
