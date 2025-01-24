@@ -1,15 +1,36 @@
-import { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from "react-redux";
-import { toggleNewInvoice } from "./state/slice";
+import { toggleNewInvoice, createNewInvoice, getInvoices } from "./state/slice";
 
 const NewInvoice = () => {
     const dispatch = useDispatch();
 
-    const [items, setItems] = useState([{ name: "", quantity: 1, price: 0, total: 0 }]);
+    const fromStreetRef = useRef();
+    const fromCityRef = useRef();
+    const fromPostalRef = useRef();
+    const fromCountryRef = useRef();
+    const toNameRef = useRef();
+    const toEmailRef = useRef();
+    const toStreetRef = useRef();
+    const toCityRef = useRef();
+    const toPostalRef = useRef();
+    const toCountryRef = useRef();
+    const toDateRef = useRef();
+    const toTermsRef = useRef();
+    const toDescriptionRef = useRef();
 
-    const handleCancelClick = () => {
-        dispatch(toggleNewInvoice());
-    };
+    const [items, setItems] = useState([{ name: "", quantity: 1, price: 0, total: 0 }]);
+    const itemRefs = useRef([]);
+
+    useEffect(() => {
+        itemRefs.current = items.map((_, index) => 
+            itemRefs.current[index] || {
+                name: React.createRef(),
+                quantity: React.createRef(),
+                price: React.createRef(),
+            }
+        );
+    }, [items]);
 
     const addItem = () => {
         setItems([...items, { name: "", quantity: 1, price: 0, total: 0 }]);
@@ -17,13 +38,71 @@ const NewInvoice = () => {
 
     const updateItem = (index, field, value) => {
         const updatedItems = items.map((item, i) =>
-            i === index ? { ...item, [field]: value, total: field !== "total" ? item.quantity * item.price : item.total } : item
+            i === index
+                ? {
+                    ...item,
+                    [field]: value,
+                    total: field === "quantity" || field === "price"
+                        ? (field === "quantity" ? value : item.quantity) * (field === "price" ? value : item.price)
+                        : item.total,
+                }
+                : item
         );
         setItems(updatedItems);
     };
 
     const removeItem = (index) => {
         setItems(items.filter((_, i) => i !== index));
+        itemRefs.current.splice(index, 1);
+    };
+
+    const handleCancelClick = () => {
+        dispatch(toggleNewInvoice());
+    };
+
+    const totalPrice = items.reduce((sum, item) => sum + item.total, 0);
+
+    const calculateDueDate = (issueDate, daysToAdd) => {
+        const date = new Date(issueDate);
+        date.setDate(date.getDate() + daysToAdd);
+        return date.toISOString();
+    };
+
+    const handleAddNewInvoice = () => {
+        const dueDate = calculateDueDate(toDateRef.current.value, Number(toTermsRef.current.value));
+
+        const issueDate = new Date(toDateRef.current.value).toISOString();
+
+        const itemData = items.map((_, index) => ({
+            name: itemRefs.current[index].name.current.value,
+            quantity: parseInt(itemRefs.current[index].quantity.current.value) || 0,
+            price: parseFloat(itemRefs.current[index].price.current.value) || 0,
+            total:
+                (parseInt(itemRefs.current[index].quantity.current.value) || 0) *
+                (parseFloat(itemRefs.current[index].price.current.value) || 0),
+        }));
+        const invoiceData = {
+            created_at: issueDate,
+            payment_due: dueDate,
+            description: toDescriptionRef.current.value,
+            payment_terms: toTermsRef.current.value,
+            client_name: toNameRef.current.value,
+            client_email: toEmailRef.current.value,
+            status: 'draft',
+            sender_street: fromStreetRef.current.value,
+            sender_city: fromCityRef.current.value,
+            sender_postcode: fromPostalRef.current.value,
+            sender_country: fromCountryRef.current.value,
+            client_street: toStreetRef.current.value,
+            client_city: toCityRef.current.value,
+            client_postcode: toPostalRef.current.value,
+            client_country: toCountryRef.current.value,
+            total: totalPrice,
+            items: itemData
+        };
+
+        dispatch(createNewInvoice(invoiceData));
+        dispatch(toggleNewInvoice());
     };
 
     return (
@@ -37,19 +116,19 @@ const NewInvoice = () => {
                             <span className="billFromLable">Bill From</span>
                             <div className="formInvoiceFromStreetContainer">
                                 <span className="formInvoiceFromStreetLable">Street Address</span>
-                                <input type="text" className="formInvoiceFromStreetInput" />
+                                <input ref={fromStreetRef} type="text" className="formInvoiceFromStreetInput" />
                             </div>
                             <div className="formInvoiceFromStreetContainer">
                                 <span className="formInvoiceFromCityLable">City</span>
-                                <input type="text" className="formInvoiceFromCityInput" />
+                                <input ref={fromCityRef} type="text" className="formInvoiceFromCityInput" />
                             </div>
                             <div className="formInvoiceFromStreetContainer">
                                 <span className="formInvoiceFromPostalLable">Postal Code</span>
-                                <input type="text" className="formInvoiceFromPostalInput" />
+                                <input ref={fromPostalRef} type="text" className="formInvoiceFromPostalInput" />
                             </div>
                             <div className="formInvoiceFromStreetContainer">
                                 <span className="formInvoiceFromCountryLable">Country</span>
-                                <input type="text" className="formInvoiceFromCountryInput" />
+                                <input ref={fromCountryRef} type="text" className="formInvoiceFromCountryInput" />
                             </div>
                         </div>
                         {/* Bill To Section */}
@@ -57,35 +136,35 @@ const NewInvoice = () => {
                             <span className="billToLable">Bill To</span>
                             <div className="formInvoiceToNameContainer">
                                 <span className="formInvoiceToNameLable">Client's Name</span>
-                                <input type="text" className="formInvoiceToNameInput" />
+                                <input ref={toNameRef} type="text" className="formInvoiceToNameInput" />
                             </div>
                             <div className="formInvoiceToEmailContainer">
                                 <span className="formInvoiceToEmailLable">Client's Email</span>
-                                <input type="text" className="formInvoiceToEmailInput" />
+                                <input ref={toEmailRef} type="text" className="formInvoiceToEmailInput" />
                             </div>
                             <div className="formInvoiceToStreetContainer">
                                 <span className="formInvoiceToStreetLable">Street Address</span>
-                                <input type="text" className="formInvoiceToStreetInput" />
+                                <input ref={toStreetRef} type="text" className="formInvoiceToStreetInput" />
                             </div>
                             <div className="formInvoiceToStreetContainer">
                                 <span className="formInvoiceToCityLable">City</span>
-                                <input type="text" className="formInvoiceToCityInput" />
+                                <input ref={toCityRef} type="text" className="formInvoiceToCityInput" />
                             </div>
                             <div className="formInvoiceToStreetContainer">
                                 <span className="formInvoiceToPostalLable">Postal Code</span>
-                                <input type="text" className="formInvoiceToPostalInput" />
+                                <input ref={toPostalRef} type="text" className="formInvoiceToPostalInput" />
                             </div>
                             <div className="formInvoiceToStreetContainer">
                                 <span className="formInvoiceToCountryLable">Country</span>
-                                <input type="text" className="formInvoiceToCountryInput" />
+                                <input ref={toCountryRef} type="text" className="formInvoiceToCountryInput" />
                             </div>
                             <div className="formInvoiceToDateContainer">
                                 <span className="formInvoiceToDateLable">Invoice Date</span>
-                                <input type="text" className="formInvoiceToDateInput" />
+                                <input type="date" ref={toDateRef} className="formInvoiceToDateInput" />
                             </div>
                             <div className="formInvoiceToTermsContainer">
-                                <span className="formInvoiceToTermsLable">Invoice Date</span>
-                                <select className="formInvoiceToTermsSelect">
+                                <span className="formInvoiceToTermsLable">Payment Terms</span>
+                                <select ref={toTermsRef} className="formInvoiceToTermsSelect">
                                     <option value="1">Next Day</option>
                                     <option value="7">Next 7 Days</option>
                                     <option value="14">Next 14 Days</option>
@@ -97,18 +176,19 @@ const NewInvoice = () => {
                             </div>
                             <div className="formInvoiceToDescriptionContainer">
                                 <span className="formInvoiceToDescriptionLable">Description</span>
-                                <input type="text" className="formInvoiceToDescriptionInput" />
+                                <input ref={toDescriptionRef} type="text" className="formInvoiceToDescriptionInput" />
                             </div>
                         </div>
                     </div>
                     {/* Items Section */}
                     <div className="formInvoiceItemsContainer">
-                    <h3>Invoice Items</h3>
+                        <h3>Invoice Items</h3>
                         {items.map((item, index) => (
                             <div key={index} className="formInvoiceItem">
                                 <div className="formInvoiceItemNameContainer">
                                     <span className="formInvoiceItemNameLable">Item Name</span>
                                     <input
+                                        ref={itemRefs.current[index]?.name}
                                         type="text"
                                         className="formInvoiceItemNameInput"
                                         value={item.name}
@@ -118,6 +198,7 @@ const NewInvoice = () => {
                                 <div className="formInvoiceItemQuantityContainer">
                                     <span className="formInvoiceItemNameLable">Quantity</span>
                                     <input
+                                        ref={itemRefs.current[index]?.quantity}
                                         className="formInvoiceItemNameInput"
                                         value={item.quantity}
                                         onChange={(e) => updateItem(index, "quantity", parseInt(e.target.value) || 0)}
@@ -126,6 +207,7 @@ const NewInvoice = () => {
                                 <div className="formInvoiceItemPriceContainer">
                                     <span className="formInvoiceItemNameLable">Price Per Unit</span>
                                     <input
+                                        ref={itemRefs.current[index]?.price}
                                         className="formInvoiceItemNameInput"
                                         value={item.price}
                                         onChange={(e) => updateItem(index, "price", parseFloat(e.target.value) || 0)}
@@ -144,8 +226,12 @@ const NewInvoice = () => {
                             Add New Item
                         </button>
                     </div>
+                    <div className="formInvoiceBottomLineContainer">
+                        <span className="formInvoiceBottomLineLable">Total price</span>
+                        <span className="formInvoiceBottomLineValue">{totalPrice.toFixed(2)}</span>
+                    </div>
                     <div className="formInvoiceControlsContainer">
-                        <button className="formInvoiceSave">Save</button>
+                        <button className="formInvoiceSave" onClick={handleAddNewInvoice}>Save</button>
                         <button className="formInvoiceCancel" onClick={handleCancelClick}>Cancel</button>
                     </div>
                 </div>
@@ -153,5 +239,5 @@ const NewInvoice = () => {
         </>
     );
 }
- 
+
 export default NewInvoice;

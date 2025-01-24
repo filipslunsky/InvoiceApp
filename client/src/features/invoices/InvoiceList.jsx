@@ -9,17 +9,18 @@ const InvoiceList = () => {
 
     const invoices = useSelector(state => state.invoices.invoices);
     const newInvoice = useSelector(state => state.invoices.newInvoice);
+    const addInvoiceStatus = useSelector(state => state.invoices.addInvoiceStatus);
 
     const [invoiceStatus, setInvoiceStatus] = useState('');
     const [filteredInvoices, setFilteredInvoices] = useState(invoices);
 
     useEffect(() => {
         dispatch(getInvoices());
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         setFilteredInvoices(invoices);
-    }, [invoices]);
+    }, [invoices, addInvoiceStatus]);
 
     useEffect(() => {
         setFilteredInvoices(invoices.filter(item => item.status.includes(invoiceStatus)));

@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { v4 as uuidv4 } from "uuid";
 
 const INVOICES_URL = `${import.meta.env.VITE_API_URL}/invoices`;
 
 const initialState = {
     invoices: [],
     invoicesStatus: '',
-    // currentInvoice: {},
-    // currentInvoiceStatus: '',
     editInvoiceStatus: '',
     addInvoiceStatus: '',
     deleteInvoiceStatus: '',
@@ -25,8 +24,22 @@ export const getInvoices = createAsyncThunk('inovices/getInvoices', async (_, { 
     }
 });
 
-// fix the sending invoiceData to the body
-export const createNewInvoice = createAsyncThunk('invoices/createNewInvoice', async (invoiceData, { rejectWithValue}) => {
+export const createNewInvoice = createAsyncThunk('invoices/createNewInvoice', async (newInvoiceData, { rejectWithValue}) => {
+    const invoiceId = uuidv4();
+    const items = newInvoiceData.items;
+
+    const itemsWithInvoiceId = newInvoiceData.items.map((item) => ({
+        ...item,
+        invoice_id: invoiceId,
+    }));
+
+    const invoiceData = {
+        ...newInvoiceData,
+        invoice_id: invoiceId,
+        items: itemsWithInvoiceId,
+    };
+
+
     try {
         const response = await axios.post(INVOICES_URL, {invoiceData});
         return response.data;
@@ -35,7 +48,6 @@ export const createNewInvoice = createAsyncThunk('invoices/createNewInvoice', as
     }
 });
 
-// fix the sending invoiceData to the body
 export const editInvoice = createAsyncThunk('invoices/editInvoice', async (invoiceData, { rejectWithValue}) => {
     try {
         const response = await axios.post(`${INVOICES_URL}/${invoiceData.invoice_id}`, {invoiceData});
