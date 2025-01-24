@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getInvoices, editInvoice, deleteInvoice } from "./state/slice";
+import { getInvoices, editInvoice, deleteInvoice, toggleUpdateInvoice } from "./state/slice";
+import EditInvoice from "./EditInvoice";
 
 const InvoiceDetail = () => {
     const navigate = useNavigate();
@@ -11,6 +12,7 @@ const InvoiceDetail = () => {
     const editInvoiceStatus = useSelector(state => state.invoices.editInvoiceStatus);
     const deleteInvoiceStatus = useSelector(state => state.invoices.deleteInvoiceStatus);
     const message = useSelector(state => state.invoices.message);
+    const updateInvoice = useSelector(state => state.invoices.updateInvoice);
 
     const { id } = useParams();
 
@@ -37,6 +39,10 @@ const InvoiceDetail = () => {
 
     const handleClickBack = () => {
         navigate('/invoices');
+    };
+
+    const handleClickEdit = () => {
+        dispatch(toggleUpdateInvoice());
     };
 
     const handleToggleDelete = () => {
@@ -66,7 +72,7 @@ const InvoiceDetail = () => {
                         <span className={`invoiceDetailStatusValue${thisInvoice.status}`}>{thisInvoice.status}</span>
                     </div>
                     <div className="invoiceDetailControlsContainer">
-                        <button className="invoiceDetailEditButton">Edit</button>
+                        <button className="invoiceDetailEditButton" onClick={handleClickEdit}>Edit</button>
                         {
                             clickDelete
                             ?
@@ -152,6 +158,13 @@ const InvoiceDetail = () => {
                     </div>
                 </div>
             </div>
+            {
+                updateInvoice
+                ?
+                <EditInvoice id={thisInvoice.invoice_id} />
+                :
+                ''
+            }
         </>
     );
 }

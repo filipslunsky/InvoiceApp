@@ -13,6 +13,7 @@ const initialState = {
     deleteInvoiceStatus: '',
     message: '',
     newInvoice: false,
+    updateInvoice: false,
 };
 
 export const getInvoices = createAsyncThunk('inovices/getInvoices', async (_, { rejectWithValue }) => {
@@ -57,6 +58,9 @@ const invoicesSlice = createSlice({
     reducers: {
         toggleNewInvoice: (state) => {
             state.newInvoice = !state.newInvoice;
+        },
+        toggleUpdateInvoice: (state) => {
+            state.updateInvoice = !state.updateInvoice;
         },
     },
     extraReducers: (builder) => {
@@ -108,5 +112,5 @@ const invoicesSlice = createSlice({
     },
 });
 
-export const { toggleNewInvoice } = invoicesSlice.actions;
+export const { toggleNewInvoice, toggleUpdateInvoice } = invoicesSlice.actions;
 export default invoicesSlice.reducer;
