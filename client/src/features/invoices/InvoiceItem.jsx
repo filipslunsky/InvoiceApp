@@ -28,7 +28,7 @@ const InvoiceItem = ({invoiceId, dueDate, clientName, total, invoiceStatus}) => 
                 <span className="invoiceItemDueDate">Due {formatDate(dueDate.split('T')[0])}</span>
                 <span className="invoiceItemClientName">{clientName}</span>
                 <span className="invoiceItemTotal">£{formatNumber(Number(total))}</span>
-                <span className={`invoiceItemStatus${invoiceStatus}`}></span>
+                <span className={`invoiceItemStatus${invoiceStatus}`}>{invoiceStatus}</span>
                 <button className="invoiceItemDetailButton" onClick={handleDetailClick}><img src={rightArrowIcon} alt="right arrow" /></button>
             </div>
         </>

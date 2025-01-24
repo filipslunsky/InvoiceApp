@@ -22,7 +22,6 @@ const Navbar = () => {
 
     return (
         <>  <div className="navbarMainContainer">
-                <h2>Navbar</h2>
                 <button className="homeButton" onClick={handleHomeClick}><img src={appLogo} alt="logo" /></button>
                 <button className="toggleNightButton" onClick={handleNightModeClick}><img src={nightMode ? sunIcon : moonIcon} /></button>
                 <div className="userImageDiv">
