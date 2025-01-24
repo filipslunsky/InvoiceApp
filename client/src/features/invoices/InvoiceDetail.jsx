@@ -1,19 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getInvoices } from "./state/slice";
+import { getInvoices, editInvoice, deleteInvoice } from "./state/slice";
 
 const InvoiceDetail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const invoices = useSelector(state => state.invoices.invoices);
+    const editInvoiceStatus = useSelector(state => state.invoices.editInvoiceStatus);
+    const deleteInvoiceStatus = useSelector(state => state.invoices.deleteInvoiceStatus);
+    const message = useSelector(state => state.invoices.message);
 
     const { id } = useParams();
 
+    const [clickDelete, setClickDelete] = useState(false);
+
     useEffect(() => {
         dispatch(getInvoices());
-    }, []);
+    }, [deleteInvoiceStatus]);
 
     const thisInvoice = invoices.filter(item => item.invoice_id == id)[0];
 
@@ -32,7 +37,16 @@ const InvoiceDetail = () => {
 
     const handleClickBack = () => {
         navigate('/invoices');
-    };  
+    };
+
+    const handleToggleDelete = () => {
+        setClickDelete(!clickDelete);
+    };
+    
+    const handleClickDeleteYes = () => {
+        dispatch(deleteInvoice(id));
+        navigate('/invoices');
+    };
 
     if (!thisInvoice) {
         return (
@@ -53,7 +67,17 @@ const InvoiceDetail = () => {
                     </div>
                     <div className="invoiceDetailControlsContainer">
                         <button className="invoiceDetailEditButton">Edit</button>
-                        <button className="invoiceDetailDeleteButton">Delete</button>
+                        {
+                            clickDelete
+                            ?
+                            <div className="invoiceDetailDeleteContainer">
+                                <span className="invoiceDetailDeleteConfirmQuestion">Are you sure?</span>
+                                <button className="invoiceDetailDeleteYesButton" onClick={handleClickDeleteYes}>Yes</button>
+                                <button className="invoiceDetailDeleteNoButton" onClick={handleToggleDelete}>No</button>
+                            </div>
+                            :
+                            <button className="invoiceDetailDeleteButton" onClick={handleToggleDelete}>Delete</button>
+                        }
                             {
                                 thisInvoice.status === 'pending'
                                 ?

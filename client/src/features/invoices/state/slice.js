@@ -6,8 +6,8 @@ const INVOICES_URL = `${import.meta.env.VITE_API_URL}/invoices`;
 const initialState = {
     invoices: [],
     invoicesStatus: '',
-    currentInvoice: {},
-    currentInvoiceStatus: '',
+    // currentInvoice: {},
+    // currentInvoiceStatus: '',
     editInvoiceStatus: '',
     addInvoiceStatus: '',
     deleteInvoiceStatus: '',
