@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import rightArrowIcon from '../../assets/img/icon-arrow-right.svg';
 
 const InvoiceItem = ({invoiceId, dueDate, clientName, total, invoiceStatus}) => {
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ const InvoiceItem = ({invoiceId, dueDate, clientName, total, invoiceStatus}) => 
                 <span className="invoiceItemClientName">{clientName}</span>
                 <span className="invoiceItemTotal">£{formatNumber(Number(total))}</span>
                 <span className={`invoiceItemStatus${invoiceStatus}`}></span>
-                <button className="invoiceItemDetailButton" onClick={handleDetailClick}>detail</button>
+                <button className="invoiceItemDetailButton" onClick={handleDetailClick}><img src={rightArrowIcon} alt="right arrow" /></button>
             </div>
         </>
     );

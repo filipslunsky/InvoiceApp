@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getInvoices, editInvoice, deleteInvoice, toggleUpdateInvoice } from "./state/slice";
 import EditInvoice from "./EditInvoice";
+import leftArrowIcon from '../../assets/img/icon-arrow-left.svg';
 
 const InvoiceDetail = () => {
     const navigate = useNavigate();
@@ -74,7 +75,7 @@ const InvoiceDetail = () => {
         <>
             <div className="invoiceDetailMainContainer">
                 <div className="invoiceDetailBackContainer">
-                    <button className="invoiceDetailBackButton" onClick={handleClickBack}>Go back</button>
+                    <button className="invoiceDetailBackButton" onClick={handleClickBack}><img src={leftArrowIcon} alt="left arrow" />Go back</button>
                 </div>
                 <div className="invoiceDetailHeaderContainer">
                     <div className="invoiceDetailStatusContainer">

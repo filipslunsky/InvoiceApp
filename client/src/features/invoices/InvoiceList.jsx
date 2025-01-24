@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getInvoices, toggleNewInvoice } from "./state/slice";
 import InvoiceItem from "./InvoiceItem";
 import NewInvoice from "./NewInvoice";
+import plusIcon from '../../assets/img/icon-plus.svg';
 
 const InvoiceList = () => {
     const dispatch = useDispatch();
@@ -46,12 +47,12 @@ const InvoiceList = () => {
                     onChange={(e) => {handleSelect(e)}}
                     defaultValue={invoiceStatus}
                     >
-                        <option value="">Filter by status</option>
+                        <option value="">Filter</option>
                         <option value="draft">draft</option>
                         <option value="pending">pending</option>
                         <option value="paid">paid</option>
                     </select>
-                    <button className="newInvoiceButton" onClick={handleClickNew}>+</button>
+                    <button className="newInvoiceButton" onClick={handleClickNew}><img src={plusIcon} alt="plus icon" />New Invoice</button>
                 </div>
                 {
                     filteredInvoices.map(item => {
