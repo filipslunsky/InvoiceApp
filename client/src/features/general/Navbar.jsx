@@ -25,7 +25,7 @@ const Navbar = () => {
         <>  <div className="navbarMainContainer">
                 <button className="homeButton" onClick={handleHomeClick}><img className="navbarLogo" src={appLogo} alt="logo" /></button>
                 <div className="navbarBottomContainer">
-                    <button className="toggleNightButton" onClick={handleNightModeClick}><img src={nightMode ? sunIcon : moonIcon} /></button>
+                    <button className="toggleNightButton" onClick={handleNightModeClick}><img className="nightShifImage" src={nightMode ? sunIcon : moonIcon} /></button>
                     <div className="userImageDiv">
                         <img className="navbarUser" src={avatarImage} alt="user image" />
                     </div>
