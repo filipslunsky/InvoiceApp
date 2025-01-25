@@ -58,3 +58,57 @@
     width: 30px;
     border-radius: 20px;
 }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .navbarMainContainer {
+        flex-direction: row;
+        width: 100%;
+        height: 80px;
+        border-radius: 0 0 20px 20px;
+    }
+    
+    .homeButton {
+        border-radius: 0 0 20px 20px;
+    }
+    
+    .navbarBottomContainer {
+        flex-direction: row;
+        height: 100%;
+        width: 170px;
+    }
+    
+    .userImageDiv {
+        border-top: none;
+        flex-direction: row;
+        height: 100%;
+        width: 85px;
+        border-left: 1px solid #4e516a;
+    }
+}
+
+@media (max-width: 767px) {
+    .navbarMainContainer {
+        flex-direction: row;
+        width: 100%;
+        height: 80px;
+        border-radius: 0 0 20px 20px;
+    }
+    
+    .homeButton {
+        border-radius: 0 0 20px 20px;
+    }
+    
+    .navbarBottomContainer {
+        flex-direction: row;
+        height: 100%;
+        width: 170px;
+    }
+    
+    .userImageDiv {
+        border-top: none;
+        flex-direction: row;
+        height: 100%;
+        width: 85px;
+        border-left: 1px solid #4e516a;
+    }
+}
