@@ -5,6 +5,7 @@ import moonIcon from '../../assets/img/icon-moon.svg';
 import sunIcon from '../../assets/img/icon-sun.svg';
 import avatarImage from '../../assets/img/image-avatar.jpg';
 import appLogo from '../../assets/img/logo.svg';
+import './navbar.css';
 
 const Navbar = () => {
     const dispatch = useDispatch();
@@ -22,10 +23,12 @@ const Navbar = () => {
 
     return (
         <>  <div className="navbarMainContainer">
-                <button className="homeButton" onClick={handleHomeClick}><img src={appLogo} alt="logo" /></button>
-                <button className="toggleNightButton" onClick={handleNightModeClick}><img src={nightMode ? sunIcon : moonIcon} /></button>
-                <div className="userImageDiv">
-                    <img src={avatarImage} alt="user image" />
+                <button className="homeButton" onClick={handleHomeClick}><img className="navbarLogo" src={appLogo} alt="logo" /></button>
+                <div className="navbarBottomContainer">
+                    <button className="toggleNightButton" onClick={handleNightModeClick}><img src={nightMode ? sunIcon : moonIcon} /></button>
+                    <div className="userImageDiv">
+                        <img className="navbarUser" src={avatarImage} alt="user image" />
+                    </div>
                 </div>
             </div>
         </>

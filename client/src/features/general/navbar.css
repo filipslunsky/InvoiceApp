@@ -1,0 +1,18 @@
+.navbarMainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    height: 100vh;
+    justify-content: space-between;
+    background-color: #1e213c;
+    border-radius: 0 20px 20px 0;
+}
+
+.homeButton {
+    border-radius: 0 20px 20px 0;
+    width: 80px;
+    height: 80px;
+    border: none;
+    background-image: linear-gradient(180deg, #7b5fef, #917afe);
+    cursor: pointer;
+}
