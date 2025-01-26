@@ -36,6 +36,17 @@ const InvoiceItem = ({invoiceId, dueDate, clientName, total, invoiceStatus}) => 
                 <div className={`invoiceItemStatus${capitalizeFirstLetter(invoiceStatus)}`}>{capitalizeFirstLetter(invoiceStatus)}</div>
                 <button className="invoiceItemDetailButton" onClick={handleDetailClick}><img src={rightArrowIcon} alt="right arrow" /></button>
             </div>
+            <div className="invoiceItemMainContainerMobile" onClick={handleDetailClick}>
+                <div className="invoiceItemLeftContainer">
+                    <div className="invoiceItemId"><span className="invoiceItemHashtag">#</span>{invoiceId}</div>
+                    <div className="invoiceItemDueDate">Due {formatDate(dueDate.split('T')[0])}</div>
+                    <div className="invoiceItemTotal">£ {formatNumber(Number(total))}</div>
+                </div>
+                <div className="invoiceItemRightContainer">
+                    <div className="invoiceItemClientName">{clientName}</div>
+                    <div className={`invoiceItemStatus${capitalizeFirstLetter(invoiceStatus)}`}>{capitalizeFirstLetter(invoiceStatus)}</div>
+                </div>
+            </div>
         </>
     );
 }
