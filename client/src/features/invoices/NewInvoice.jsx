@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { toggleNewInvoice, createNewInvoice } from "./state/slice";
+import './formInvoice.css';
 
 const NewInvoice = () => {
     const dispatch = useDispatch();

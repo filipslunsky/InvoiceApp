@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getInvoices, editInvoice, deleteInvoice, toggleUpdateInvoice } from "./state/slice";
 import EditInvoice from "./EditInvoice";
 import leftArrowIcon from '../../assets/img/icon-arrow-left.svg';
+import './invoiceDetail.css';
 
 const InvoiceDetail = () => {
     const navigate = useNavigate();
@@ -65,6 +66,10 @@ const InvoiceDetail = () => {
         dispatch(editInvoice(invoiceData));
     };
 
+    const capitalizeFirstLetter = (word) => {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    };
+
     if (!thisInvoice) {
         return (
             <h2 className="mainStatusMessage">Loading...</h2>
@@ -73,14 +78,14 @@ const InvoiceDetail = () => {
 
     return (
         <>
-            <div className="invoiceDetailMainContainer">
+            <div className={updateInvoice ? "invoiceDetailMainContainerSuppressed" : "invoiceDetailMainContainer"}>
                 <div className="invoiceDetailBackContainer">
-                    <button className="invoiceDetailBackButton" onClick={handleClickBack}><img src={leftArrowIcon} alt="left arrow" />Go back</button>
+                    <button className="invoiceDetailBackButton" onClick={handleClickBack}><img className="invoiceDetailBackArrow" src={leftArrowIcon} alt="left arrow" />Go back</button>
                 </div>
                 <div className="invoiceDetailHeaderContainer">
                     <div className="invoiceDetailStatusContainer">
                         <span className="invoiceDetailStatusLable">Status</span>
-                        <span className={`invoiceDetailStatusValue${thisInvoice.status}`}>{thisInvoice.status}</span>
+                        <span className={`invoiceDetailStatusValue${capitalizeFirstLetter(thisInvoice.status)}`}>{capitalizeFirstLetter(thisInvoice.status)}</span>
                     </div>
                     <div className="invoiceDetailControlsContainer">
                         <button className="invoiceDetailEditButton" onClick={handleClickEdit}>Edit</button>

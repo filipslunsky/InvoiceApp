@@ -1,0 +1,150 @@
+.invoiceDetailMainContainer, .invoiceDetailMainContainerSuppressed {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f8f7fc;
+}
+
+.invoiceDetailMainContainerSuppressed {
+    filter: brightness(25%);
+}
+
+.invoiceDetailBackContainer {
+    width: 70%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.invoiceDetailBackButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 5px 15px 5px 2px;
+    border-radius: 10px;
+}
+
+.invoiceDetailBackButton:hover {
+    border: 1px solid #868689;;
+}
+
+.invoiceDetailBackArrow {
+    margin: 0 10px;
+    padding-bottom: 2px;
+}
+
+.invoiceDetailHeaderContainer {
+    margin-top: 20px;
+    border-radius: 20px;
+    background-color: white;
+    width: 70%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invoiceDetailStatusLable {
+    color: #868689;
+    font-size: 14px;
+    margin: 0 5px 0 20px;
+}
+
+.invoiceDetailStatusValuePending, .invoiceDetailStatusValueDraft, .invoiceDetailStatusValuePaid {
+    display: inline-block;
+    text-align: center;
+    width: 90px;
+    height: 16px;
+    font-size: 15px;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin-left: 8px;
+}
+
+.invoiceDetailStatusValuePending:before, .invoiceDetailStatusValueDraft:before, .invoiceDetailStatusValuePaid:before {
+    content: "•";
+    margin-right: 8px;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+.invoiceDetailStatusValuePending {
+    color: #ae976f;
+    background-color: #fff7e5;
+}
+
+.invoiceDetailStatusValueDraft {
+    color: #000000;
+    background-color: #eeeef0;
+}
+
+.invoiceDetailStatusValuePaid {
+    color: #48cf7c;
+    background-color: #e9fff8;
+}
+
+.invoiceDetailControlsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.invoiceDetailEditButton, .invoiceDetailDeleteButton, .invoiceDetailMarkButton {
+    padding: 15px 20px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.invoiceDetailEditButton:hover, .invoiceDetailDeleteButton:hover, .invoiceDetailMarkButton:hover {
+    box-shadow: 1px 1px 1px #868689;
+}
+
+.invoiceDetailEditButton {
+    background-color: #eeeef0;
+}
+
+.invoiceDetailDeleteButton {
+    background-color: #f25552;
+}
+
+.invoiceDetailMarkButton {
+    background-color: #8563ff;
+    margin-right: 10px;
+}
+
+.invoiceDetailInvoiceInfoContainer {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.invoiceDetailInfoHeadContainer {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invoiceDetailInfoHeadLeftContainer {
+    margin-left: 20px;
+}
+
+.invoiceDetailInfoHeadRightContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-right: 20px;
+}

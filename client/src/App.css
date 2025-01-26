@@ -6,6 +6,7 @@
 #root {
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #f8f7fc 
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {

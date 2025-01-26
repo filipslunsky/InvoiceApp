@@ -38,7 +38,7 @@ const InvoiceList = () => {
 
     return (
         <> 
-            <div className="invoiceListMainContainer">
+            <div className={newInvoice ? "invoiceListMainContainerSuppressed" : "invoiceListMainContainer"}>
                 <div className="invoiceListControlsContainer">
                     <div className="invoiceListControlsLeftContainer">
                         <h2 className="invoiceListMainTitle">Invoices</h2>

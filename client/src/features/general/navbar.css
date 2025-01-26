@@ -7,6 +7,7 @@
     align-items: center;
     background-color: #1e213c;
     border-radius: 0 20px 20px 0;
+    z-index: 3;
 }
 
 .homeButton {
