@@ -6,6 +6,38 @@
     background-color: #f8f7fc;
 }
 
+.invoiceDetailMainContainer.nightMode, .invoiceDetailMainContainerSuppressed.nightMode {
+    background-color: #141625;
+}
+
+.invoiceDetailMainContainer.nightMode .invoiceDetailBackButton, .invoiceDetailMainContainerSuppressed.nightMode .invoiceDetailBackButton {
+    color: white;
+}
+
+.invoiceDetailMainContainer.nightMode .invoiceDetailHeaderContainer, .invoiceDetailMainContainerSuppressed.nightMode .invoiceDetailHeaderContainer {
+    background-color: #1f213a;
+}
+
+.invoiceDetailMainContainer.nightMode .invoiceDetailInvoiceInfoContainer, .invoiceDetailMainContainerSuppressed.nightMode .invoiceDetailInvoiceInfoContainer {
+    background-color: #1f213a;
+}
+
+.invoiceDetailMainContainer.nightMode .invoiceDetailInfoHeadLeftContainer, .invoiceDetailMainContainerSuppressed.nightMode .invoiceDetailInfoHeadLeftContainer {
+    color: white;
+}
+
+.invoiceDetailMainContainer.nightMode .invoiceDetailInfoHeadRightContainer, .invoiceDetailMainContainerSuppressed.nightMode .invoiceDetailInfoHeadRightContainer {
+    color: white;
+}
+
+.invoiceDetailMainContainer.nightMode .invoiceDetailInfoDetailsValue, .invoiceDetailMainContainerSuppressed.nightMode .invoiceDetailInfoDetailsValue     {
+    color: white;
+}
+
+.invoiceDetailMainContainer.nightMode .invoiceDetailItemsContainer, .invoiceDetailMainContainerSuppressed.nightMode .invoiceDetailItemsContainer     {
+    background-color: #252946;
+}
+
 .invoiceDetailMainContainerSuppressed {
     filter: brightness(25%);
 }

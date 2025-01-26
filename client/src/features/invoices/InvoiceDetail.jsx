@@ -79,7 +79,7 @@ const InvoiceDetail = () => {
 
     return (
         <>
-            <div className={updateInvoice ? "invoiceDetailMainContainerSuppressed" : "invoiceDetailMainContainer"}>
+            <div className={nightMode ? updateInvoice ? "invoiceDetailMainContainerSuppressed nightMode" : "invoiceDetailMainContainer nightMode" : updateInvoice ? "invoiceDetailMainContainerSuppressed" : "invoiceDetailMainContainer"}>
                 <div className="invoiceDetailBackContainer">
                     <button className="invoiceDetailBackButton" onClick={handleClickBack}><img className="invoiceDetailBackArrow" src={leftArrowIcon} alt="left arrow" />Go back</button>
                 </div>

@@ -13,11 +13,23 @@
     background-color: #1f2138;
 }
 
+.invoiceItemMainContainerMobile.nightMode {
+    background-color: #1f2138;
+}
+
 .invoiceItemMainContainer.nightMode .invoiceItemId {
     color: white;
 }
 
 .invoiceItemMainContainer.nightMode .invoiceItemTotal{
+    color: white;
+}
+
+.invoiceItemMainContainerMobile.nightMode .invoiceItemId {
+    color: white;
+}
+
+.invoiceItemMainContainerMobile.nightMode .invoiceItemTotal{
     color: white;
 }
 
