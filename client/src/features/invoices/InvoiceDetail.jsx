@@ -160,8 +160,8 @@ const InvoiceDetail = () => {
                                         <div className="invoiceDetailItemContainer" key={item.item_id}>
                                             <p className="invoiceDetailItemNameValue">{item.name}</p>
                                             <p className="invoiceDetailQuantityValue">{item.quantity}</p>
-                                            <p className="invoiceDetailPriceValue">{formatNumber(item.price)}</p>
-                                            <p className="invoiceDetailTotalValue">{formatNumber(item.total)}</p>
+                                            <p className="invoiceDetailPriceValue">£ {formatNumber(item.price)}</p>
+                                            <p className="invoiceDetailTotalValue">£ {formatNumber(item.total)}</p>
                                         </div>
                                     )
                                 })
