@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleNewInvoice, createNewInvoice } from "./state/slice";
 import trashIcon from '../../assets/img/icon-delete.svg';
 import plusIcon from '../../assets/img/icon-plus.svg';
@@ -7,6 +7,8 @@ import './formInvoice.css';
 
 const NewInvoice = () => {
     const dispatch = useDispatch();
+
+    const nightMode = useSelector(state => state.visual.nightMode);
 
     const fromStreetRef = useRef();
     const fromCityRef = useRef();
@@ -110,7 +112,7 @@ const NewInvoice = () => {
 
     return (
         <>
-            <div className="formInvoiceMainContainer">
+            <div className={nightMode ? "formInvoiceMainContainer nightMode" : "formInvoiceMainContainer"}>
                 <h2 className="formInvoiceHeading">New Invoice</h2>
                 <div className="formInvoiceFormContentContainer">
                     <div className="formInvoiceMainElementsContainer">

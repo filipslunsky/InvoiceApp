@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import rightArrowIcon from '../../assets/img/icon-arrow-right.svg';
 import './invoiceItem.css';
 
 const InvoiceItem = ({invoiceId, dueDate, clientName, total, invoiceStatus}) => {
     const navigate = useNavigate();
+
+    const nightMode = useSelector(state => state.visual.nightMode);
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);

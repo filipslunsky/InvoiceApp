@@ -12,6 +12,7 @@ const InvoiceList = () => {
     const invoices = useSelector(state => state.invoices.invoices);
     const newInvoice = useSelector(state => state.invoices.newInvoice);
     const addInvoiceStatus = useSelector(state => state.invoices.addInvoiceStatus);
+    const nightMode = useSelector(state => state.visual.nightMode);
 
     const [invoiceStatus, setInvoiceStatus] = useState('');
     const [filteredInvoices, setFilteredInvoices] = useState(invoices);

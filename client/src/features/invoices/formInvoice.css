@@ -13,6 +13,42 @@
     flex-direction: column;
 }
 
+input:focus, select:focus {
+    outline: none;
+}
+
+.formInvoiceMainContainer.nightMode {
+    background-color: #141625;
+}
+
+.formInvoiceMainContainer.nightMode input {
+    background-color: #1d213c;
+    border: none;
+    color: white;
+}
+
+.formInvoiceMainContainer.nightMode select {
+    background-color: #1d213c;
+    color: white;
+    border: none;
+}
+
+.formInvoiceMainContainer.nightMode button {
+    color: white;
+}
+
+.formInvoiceMainContainer.nightMode h2 {
+    color: white;
+}
+
+.formInvoiceMainContainer.nightMode .formInvoiceItemTotalValue {
+    color: white;
+}
+
+.formInvoiceMainContainer.nightMode .formInvoiceBottomLineValue {
+    color: white;
+}
+
 .formInvoiceFormContentContainer {
     overflow-y: auto;
     overflow-x: hidden;
@@ -63,7 +99,7 @@
     flex-direction: column;
 }
 
-.formInvoiceFromStreetLable, .formInvoiceFromCityLable, .formInvoiceFromPostalLable, .formInvoiceFromCountryLable, .formInvoiceToNameLable, .formInvoiceToEmailLable, .formInvoiceToStreetLable, .formInvoiceToCityLable, .formInvoiceToPostalLable, .formInvoiceToCountryLable, .formInvoiceToDateLable, .formInvoiceToTermsLable, .formInvoiceToDescriptionLable, .formInvoiceItemNameLable, .formInvoiceItemQuantityLable, .formInvoiceItemPriceLable, .formInvoiceItemTotalPriceLable {
+.formInvoiceFromStreetLable, .formInvoiceFromCityLable, .formInvoiceFromPostalLable, .formInvoiceFromCountryLable, .formInvoiceToNameLable, .formInvoiceToEmailLable, .formInvoiceToStreetLable, .formInvoiceToCityLable, .formInvoiceToPostalLable, .formInvoiceToCountryLable, .formInvoiceToDateLable, .formInvoiceToTermsLable, .formInvoiceToDescriptionLable, .formInvoiceItemNameLable, .formInvoiceItemQuantityLable, .formInvoiceItemPriceLable, .formInvoiceItemTotalPriceLable, .formInvoiceQuantityLable {
     font-size: 12px;
     color: #868689;
     margin: 5px 0;

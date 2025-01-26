@@ -15,6 +15,7 @@ const InvoiceDetail = () => {
     const deleteInvoiceStatus = useSelector(state => state.invoices.deleteInvoiceStatus);
     const message = useSelector(state => state.invoices.message);
     const updateInvoice = useSelector(state => state.invoices.updateInvoice);
+    const nightMode = useSelector(state => state.visual.nightMode);
 
     const { id } = useParams();
 

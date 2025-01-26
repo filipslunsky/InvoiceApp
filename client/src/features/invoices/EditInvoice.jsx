@@ -10,6 +10,7 @@ const EditInvoice = ({id}) => {
 
     const invoices = useSelector(state => state.invoices.invoices);
     const thisInvoice = invoices.filter(item => item.invoice_id == id)[0];
+    const nightMode = useSelector(state => state.visual.nightMode);
 
     const fromStreetRef = useRef();
     const fromCityRef = useRef();
@@ -122,7 +123,7 @@ const EditInvoice = ({id}) => {
 
     return (
         <>
-            <div className="formInvoiceMainContainer">
+            <div className={nightMode ? "formInvoiceMainContainer nightMode" : "formInvoiceMainContainer"}>
                 <h2 className="formInvoiceHeading">Edit Invoice {id}</h2>
                 <div className="formInvoiceFormContentContainer">
                     <div className="formInvoiceMainElementsContainer">
