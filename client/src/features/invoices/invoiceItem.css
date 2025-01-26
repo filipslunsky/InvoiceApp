@@ -1,0 +1,78 @@
+.invoiceItemMainContainer {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.invoiceItemId {
+    margin-left: 20px;
+    font-size: 14px;
+    width: 80px;
+    font-weight: 600;
+}
+
+.invoiceItemHashtag {
+    color: #868689;
+    font-size: 12px;
+    margin-right: 2px;
+    font-weight: 300;
+}
+
+.invoiceItemDueDate, .invoiceItemClientName {
+    width: 120px;
+    text-align: left;
+    font-size: 14px;
+    color: #868689;
+}
+
+.invoiceItemTotal {
+    width: 100px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: right;
+}
+
+.invoiceItemStatusPending, .invoiceItemStatusDraft, .invoiceItemStatusPaid {
+    width: 100px;
+    height: 14px;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 8px;
+}
+
+.invoiceItemStatusPending:before, .invoiceItemStatusDraft:before, .invoiceItemStatusPaid:before {
+    content: "•";
+    margin-right: 8px;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+.invoiceItemStatusPending {
+    color: #ae976f;
+    background-color: #fff7e5;
+}
+
+.invoiceItemStatusDraft {
+    color: #000000;
+    background-color: #eeeef0;
+}
+
+.invoiceItemStatusPaid {
+    color: #48cf7c;
+    background-color: #e9fff8;
+}
+
+.invoiceItemDetailButton {
+    background-color: inherit;
+    border: none;
+    margin-right: 20px;
+    cursor: pointer;
+}

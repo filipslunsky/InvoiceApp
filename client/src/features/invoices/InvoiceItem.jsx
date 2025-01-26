@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import rightArrowIcon from '../../assets/img/icon-arrow-right.svg';
+import './invoiceItem.css';
 
 const InvoiceItem = ({invoiceId, dueDate, clientName, total, invoiceStatus}) => {
     const navigate = useNavigate();
@@ -21,14 +22,18 @@ const InvoiceItem = ({invoiceId, dueDate, clientName, total, invoiceStatus}) => 
         navigate(`/invoice/${invoiceId}`);
     };
 
+    const capitalizeFirstLetter = (word) => {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    };
+
     return (
         <>
             <div className="invoiceItemMainContainer">
-                <span className="invoiceItemID">#{invoiceId}</span>
-                <span className="invoiceItemDueDate">Due {formatDate(dueDate.split('T')[0])}</span>
-                <span className="invoiceItemClientName">{clientName}</span>
-                <span className="invoiceItemTotal">£{formatNumber(Number(total))}</span>
-                <span className={`invoiceItemStatus${invoiceStatus}`}>{invoiceStatus}</span>
+                <div className="invoiceItemId"><span className="invoiceItemHashtag">#</span>{invoiceId}</div>
+                <div className="invoiceItemDueDate">Due {formatDate(dueDate.split('T')[0])}</div>
+                <div className="invoiceItemClientName">{clientName}</div>
+                <div className="invoiceItemTotal">£ {formatNumber(Number(total))}</div>
+                <div className={`invoiceItemStatus${capitalizeFirstLetter(invoiceStatus)}`}>{capitalizeFirstLetter(invoiceStatus)}</div>
                 <button className="invoiceItemDetailButton" onClick={handleDetailClick}><img src={rightArrowIcon} alt="right arrow" /></button>
             </div>
         </>
