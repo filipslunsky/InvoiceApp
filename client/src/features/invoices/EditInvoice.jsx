@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { editInvoice, toggleUpdateInvoice } from "./state/slice";
+import trashIcon from '../../assets/img/icon-delete.svg';
+import plusIcon from '../../assets/img/icon-plus.svg';
 import './formInvoice.css';
 
 const EditInvoice = ({id}) => {
@@ -159,15 +161,15 @@ const EditInvoice = ({id}) => {
                                 <span className="formInvoiceToStreetLable">Street Address</span>
                                 <input defaultValue={thisInvoice.client_street} ref={toStreetRef} type="text" className="formInvoiceToStreetInput" />
                             </div>
-                            <div className="formInvoiceToStreetContainer">
+                            <div className="formInvoiceToCityContainer">
                                 <span className="formInvoiceToCityLable">City</span>
                                 <input defaultValue={thisInvoice.client_city} ref={toCityRef} type="text" className="formInvoiceToCityInput" />
                             </div>
-                            <div className="formInvoiceToStreetContainer">
+                            <div className="formInvoiceToPostalContainer">
                                 <span className="formInvoiceToPostalLable">Postal Code</span>
                                 <input defaultValue={thisInvoice.client_postcode} ref={toPostalRef} type="text" className="formInvoiceToPostalInput" />
                             </div>
-                            <div className="formInvoiceToStreetContainer">
+                            <div className="formInvoiceToCountryContainer">
                                 <span className="formInvoiceToCountryLable">Country</span>
                                 <input defaultValue={thisInvoice.client_country} ref={toCountryRef} type="text" className="formInvoiceToCountryInput" />
                             </div>
@@ -195,7 +197,7 @@ const EditInvoice = ({id}) => {
                     </div>
                     {/* Items Section */}
                     <div className="formInvoiceItemsContainer">
-                        <h3>Invoice Items</h3>
+                        <span className='formInvoiceInvoiceItemsLable'>Invoice Items</span>
                         {items.map((item, index) => (
                             <div key={index} className="formInvoiceItem">
                                 <div className="formInvoiceItemNameContainer">
@@ -209,35 +211,35 @@ const EditInvoice = ({id}) => {
                                     />
                                 </div>
                                 <div className="formInvoiceItemQuantityContainer">
-                                    <span className="formInvoiceItemNameLable">Quantity</span>
+                                    <span className="formInvoiceQuantityLable">Quantity</span>
                                     <input
                                         ref={itemRefs.current[index]?.quantity}
-                                        className="formInvoiceItemNameInput"
+                                        className="formInvoiceItemQuantityInput"
                                         value={item.quantity}
                                         onChange={(e) => updateItem(index, "quantity", parseInt(e.target.value) || 0)}
                                     />
                                 </div>
                                 <div className="formInvoiceItemPriceContainer">
-                                    <span className="formInvoiceItemNameLable">Price Per Unit</span>
+                                    <span className="formInvoiceItemPriceLable">Price Per Unit</span>
                                     <input
                                         ref={itemRefs.current[index]?.price}
-                                        className="formInvoiceItemNameInput"
+                                        className="formInvoiceItemPriceInput"
                                         value={item.price}
                                         onChange={(e) => updateItem(index, "price", parseFloat(e.target.value) || 0)}
                                     />
                                 </div>
                                 <div className="formInvoiceItemTotalPriceContainer">
-                                    <span className="formInvoiceItemNameLable">Total Price</span>
-                                    <span className="formInvoiceItemNameValue">£ {(item.quantity * item.price).toFixed(2)}</span>
+                                    <span className="formInvoiceItemTotalLable">Total Price</span>
+                                    <span className="formInvoiceItemTotalValue">£ {(item.quantity * item.price).toFixed(2)}</span>
                                 </div>
                                 <button className="itemRemoveButton" onClick={() => removeItem(index)}>
-                                    Remove
+                                    <img className='trashIcon' src={trashIcon} alt="delete icon" /> delete
                                 </button>
                             </div>
                         ))}
 
                         <button className="itemAddButton" onClick={addItem}>
-                            Add New Item
+                            <img className='formInvoicePlusIcon' src={plusIcon} alt="plus icon" />Add New Item
                         </button>
                     </div>
                     <div className="formInvoiceBottomLineContainer">

@@ -30,7 +30,7 @@
 }
 
 .invoiceDetailBackButton:hover {
-    border: 1px solid #868689;
+    font-weight: 600;
 }
 
 .invoiceDetailBackArrow {
@@ -101,14 +101,16 @@
     border: none;
     border-radius: 25px;
     cursor: pointer;
+    color: white;
 }
 
 .invoiceDetailEditButton:hover, .invoiceDetailDeleteButton:hover, .invoiceDetailMarkButton:hover {
-    box-shadow: 1px 1px 1px #868689;
+    font-weight: 600;
 }
 
 .invoiceDetailEditButton {
     background-color: #eeeef0;
+    color: black;
 }
 
 .invoiceDetailDeleteButton {

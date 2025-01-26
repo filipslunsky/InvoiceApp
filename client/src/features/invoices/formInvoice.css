@@ -1,9 +1,206 @@
 .formInvoiceMainContainer {
     background-color: white;
-    height: 100vh;
+    height: 97.2vh;
     position: absolute;
     left: 70px;
-    padding-left: 30px;
-    width: 60%;
+    padding: 20px 0 0 45px;
+    width: 55%;
     border-radius: 0 20px 20px 0;
+    left: -65%;
+    animation: slideRight 0.6s ease-out forwards;
+    box-shadow: 2px 2px 2px black;
+    display: flex;
+    flex-direction: column;
+}
+
+.formInvoiceFormContentContainer {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.formInvoiceFormContentContainer::-webkit-scrollbar {
+    display: none;
+}
+
+@keyframes slideRight {
+    0% {
+        left: -65%;
+    }
+    100% {
+        left: 70px;
+    }
+}
+
+.formInvoiceHeading {
+    margin-bottom: 5px;
+}
+
+.formInvoiceFormContentContainer {
+    width: 85%;
+}
+
+.billFromLable, .billToLable, .formInvoiceInvoiceItemsLable {
+    color: #7b5fef;
+    font-size: 15px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 250px;
+}
+
+.formInvoiceBillFromContainer, .formInvoiceBillToContainer, .formInvoiceItemsContainer, .formInvoiceItem {
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.formInvoiceFromStreetContainer, .formInvoiceFromCityContainer, .formInvoiceFromPostalContainer, .formInvoiceFromCountryContainer, .formInvoiceToNameContainer, .formInvoiceToEmailContainer, .formInvoiceToStreetContainer, .formInvoiceToCityContainer, .formInvoiceToPostalContainer, .formInvoiceToCountryContainer, .formInvoiceToDateContainer, .formInvoiceToTermsContainer, .formInvoiceToDescriptionContainer, .formInvoiceItemNameContainer, .formInvoiceItemQuantityContainer, .formInvoiceItemPriceContainer, .formInvoiceItemTotalPriceContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.formInvoiceFromStreetLable, .formInvoiceFromCityLable, .formInvoiceFromPostalLable, .formInvoiceFromCountryLable, .formInvoiceToNameLable, .formInvoiceToEmailLable, .formInvoiceToStreetLable, .formInvoiceToCityLable, .formInvoiceToPostalLable, .formInvoiceToCountryLable, .formInvoiceToDateLable, .formInvoiceToTermsLable, .formInvoiceToDescriptionLable, .formInvoiceItemNameLable, .formInvoiceItemQuantityLable, .formInvoiceItemPriceLable, .formInvoiceItemTotalPriceLable {
+    font-size: 12px;
+    color: #868689;
+    margin: 5px 0;
+}
+
+.formInvoiceFromStreetContainer {
+    width: 100%;
+}
+
+.formInvoiceFromCityContainer, .formInvoiceFromPostalContainer, .formInvoiceFromCountryContainer {
+    width: 30%;
+}
+
+.formInvoiceFromStreetInput, .formInvoiceFromCityInput, .formInvoiceFromPostalInput, .formInvoiceFromCountryInput, .formInvoiceToNameInput, .formInvoiceToEmailInput, .formInvoiceToStreetInput, .formInvoiceToCityInput, .formInvoiceToPostalInput, .formInvoiceToCountryInput, .formInvoiceToDateInput, .formInvoiceToTermsInput, .formInvoiceToDescriptionInput, .formInvoiceItemNameInput, .formInvoiceItemQuantityInput, .formInvoiceItemPriceInput, .formInvoiceItemTotalPriceInput, .formInvoiceToTermsSelect {
+    height: 25px;
+    border-radius: 10px;
+    border: 1px solid #868689;
+    padding-left: 10px;
+}
+
+.formInvoiceToNameContainer, .formInvoiceToEmailContainer {
+    width: 48%;
+}
+
+.formInvoiceToStreetContainer {
+    width: 100%;
+}
+
+.formInvoiceToCityContainer, .formInvoiceToPostalContainer, .formInvoiceToCountryContainer {
+    width: 30%;
+}
+
+.formInvoiceToDateContainer, .formInvoiceToTermsContainer {
+    width: 40%;
+}
+
+.formInvoiceToDescriptionContainer {
+    width: 100%;
+}
+
+.formInvoiceItemNameContainer {
+    width: 100%;
+}
+
+.formInvoiceItemQuantityContainer, .formInvoiceItemPriceContainer {
+    width: 45%;
+}
+
+.formInvoiceItemQuantityInput, .formInvoiceItemPriceInput {
+    text-align: center;
+}
+
+.formInvoiceItemTotalPriceContainer {
+    margin-top: 10px;
+}
+
+.formInvoiceItemTotalLable {
+    font-size: 12px;
+    color: #868689;
+}
+
+.formInvoiceItemTotalValue {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.itemRemoveButton {
+    border: none;
+    width: 60px;
+    background-color: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.itemRemoveButton:hover {
+    font-weight: 600;
+}
+
+.itemAddButton {
+    border: none;
+    width: 100px;
+    background-color: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.itemAddButton:hover {
+    font-weight: 600;
+}
+
+.formInvoiceBottomLineContainer {
+    display: flex;
+    justify-content: flex-end;
+    height: 30px;
+    align-items: start;
+}
+
+.formInvoiceBottomLineLable {
+    font-size: 14px;
+    color: #868689;
+    margin-right: 5px;
+}
+
+.formInvoiceBottomLineValue {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.formInvoiceControlsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.formInvoiceSave, .formInvoiceCancel {
+    padding: 15px 20px;
+    margin: 0 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    color: white;
+}
+
+.formInvoiceSave:hover, .formInvoiceCancel:hover {
+    font-weight: 600;
+}
+
+.formInvoiceSave {
+    background-color: green;
+}
+
+.formInvoiceCancel {
+    background-color: #f25552;
 }

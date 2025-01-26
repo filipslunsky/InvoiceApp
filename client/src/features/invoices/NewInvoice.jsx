@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { toggleNewInvoice, createNewInvoice } from "./state/slice";
+import trashIcon from '../../assets/img/icon-delete.svg';
+import plusIcon from '../../assets/img/icon-plus.svg';
 import './formInvoice.css';
 
 const NewInvoice = () => {
@@ -119,15 +121,15 @@ const NewInvoice = () => {
                                 <span className="formInvoiceFromStreetLable">Street Address</span>
                                 <input ref={fromStreetRef} type="text" className="formInvoiceFromStreetInput" />
                             </div>
-                            <div className="formInvoiceFromStreetContainer">
+                            <div className="formInvoiceFromCityContainer">
                                 <span className="formInvoiceFromCityLable">City</span>
                                 <input ref={fromCityRef} type="text" className="formInvoiceFromCityInput" />
                             </div>
-                            <div className="formInvoiceFromStreetContainer">
+                            <div className="formInvoiceFromPostalContainer">
                                 <span className="formInvoiceFromPostalLable">Postal Code</span>
                                 <input ref={fromPostalRef} type="text" className="formInvoiceFromPostalInput" />
                             </div>
-                            <div className="formInvoiceFromStreetContainer">
+                            <div className="formInvoiceFromCountryContainer">
                                 <span className="formInvoiceFromCountryLable">Country</span>
                                 <input ref={fromCountryRef} type="text" className="formInvoiceFromCountryInput" />
                             </div>
@@ -147,15 +149,15 @@ const NewInvoice = () => {
                                 <span className="formInvoiceToStreetLable">Street Address</span>
                                 <input ref={toStreetRef} type="text" className="formInvoiceToStreetInput" />
                             </div>
-                            <div className="formInvoiceToStreetContainer">
+                            <div className="formInvoiceToCityContainer">
                                 <span className="formInvoiceToCityLable">City</span>
                                 <input ref={toCityRef} type="text" className="formInvoiceToCityInput" />
                             </div>
-                            <div className="formInvoiceToStreetContainer">
+                            <div className="formInvoiceToPostalContainer">
                                 <span className="formInvoiceToPostalLable">Postal Code</span>
                                 <input ref={toPostalRef} type="text" className="formInvoiceToPostalInput" />
                             </div>
-                            <div className="formInvoiceToStreetContainer">
+                            <div className="formInvoiceToCountryContainer">
                                 <span className="formInvoiceToCountryLable">Country</span>
                                 <input ref={toCountryRef} type="text" className="formInvoiceToCountryInput" />
                             </div>
@@ -183,7 +185,7 @@ const NewInvoice = () => {
                     </div>
                     {/* Items Section */}
                     <div className="formInvoiceItemsContainer">
-                        <h3>Invoice Items</h3>
+                        <span className='formInvoiceInvoiceItemsLable'>Invoice Items</span>
                         {items.map((item, index) => (
                             <div key={index} className="formInvoiceItem">
                                 <div className="formInvoiceItemNameContainer">
@@ -197,39 +199,39 @@ const NewInvoice = () => {
                                     />
                                 </div>
                                 <div className="formInvoiceItemQuantityContainer">
-                                    <span className="formInvoiceItemNameLable">Quantity</span>
+                                    <span className="formInvoiceItemQuantityLable">Quantity</span>
                                     <input
                                         ref={itemRefs.current[index]?.quantity}
-                                        className="formInvoiceItemNameInput"
+                                        className="formInvoiceItemQuantityInput"
                                         value={item.quantity}
                                         onChange={(e) => updateItem(index, "quantity", parseInt(e.target.value) || 0)}
                                     />
                                 </div>
                                 <div className="formInvoiceItemPriceContainer">
-                                    <span className="formInvoiceItemNameLable">Price Per Unit</span>
+                                    <span className="formInvoiceItemPriceLable">Price Per Unit</span>
                                     <input
                                         ref={itemRefs.current[index]?.price}
-                                        className="formInvoiceItemNameInput"
+                                        className="formInvoiceItemPriceInput"
                                         value={item.price}
                                         onChange={(e) => updateItem(index, "price", parseFloat(e.target.value) || 0)}
                                     />
                                 </div>
                                 <div className="formInvoiceItemTotalPriceContainer">
-                                    <span className="formInvoiceItemNameLable">Total Price</span>
-                                    <span className="formInvoiceItemNameValue">£ {(item.quantity * item.price).toFixed(2)}</span>
+                                    <span className="formInvoiceItemTotalLable">Total Price</span>
+                                    <span className="formInvoiceItemTotalValue">£ {(item.quantity * item.price).toFixed(2)}</span>
                                 </div>
                                 <button className="itemRemoveButton" onClick={() => removeItem(index)}>
-                                    Remove
+                                    <img className='trashIcon' src={trashIcon} alt="delete icon" /> delete
                                 </button>
                             </div>
                         ))}
                         <button className="itemAddButton" onClick={addItem}>
-                            Add New Item
+                            <img className='formInvoicePlusIcon' src={plusIcon} alt="plus icon" />Add New Item
                         </button>
                     </div>
                     <div className="formInvoiceBottomLineContainer">
-                        <span className="formInvoiceBottomLineLable">Total price</span>
-                        <span className="formInvoiceBottomLineValue">{totalPrice.toFixed(2)}</span>
+                        <span className="formInvoiceBottomLineLable">Total price for invoice</span>
+                        <span className="formInvoiceBottomLineValue">£ {totalPrice.toFixed(2)}</span>
                     </div>
                     <div className="formInvoiceControlsContainer">
                         <button className="formInvoiceSave" onClick={handleAddNewInvoice}>Save</button>
