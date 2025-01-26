@@ -3,20 +3,24 @@
   padding: 0;
 }
 
-#root {
+.globalContainer {
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f8f7fc 
 }
 
+.globalContainer.nightMode {
+  background-color: #141625;
+}
+
 @media (min-width: 768px) and (max-width: 1023px) {
-  #root {
+  .globalContainer {
     flex-direction: column;
   }
 }
 
 @media (max-width: 767px) {
-  #root {
+  .globalContainer {
     flex-direction: column;
   }
 }
