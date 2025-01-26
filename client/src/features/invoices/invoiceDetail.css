@@ -117,8 +117,26 @@
     color: black;
 }
 
-.invoiceDetailDeleteButton {
+.invoiceDetailDeleteButton, .invoiceDetailDeleteYesButton {
     background-color: #f25552;
+}
+
+.invoiceDetailDeleteYesButton, .invoiceDetailDeleteNoButton {
+    margin: 5px;
+    height: 25px;
+    width: 40px;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.invoiceDetailDeleteYesButton:hover, .invoiceDetailDeleteNoButton:hover {
+    font-weight: 600;
+}
+
+.invoiceDetailDeleteNoButton {
+    background-color: green;
 }
 
 .invoiceDetailMarkButton {
