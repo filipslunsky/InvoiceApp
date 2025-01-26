@@ -183,7 +183,7 @@ const InvoiceDetail = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            
             <div className="invoiceDetailControlsContainerMobile">
                 <button className="invoiceDetailEditButton" onClick={handleClickEdit}>Edit</button>
                 {
@@ -204,6 +204,7 @@ const InvoiceDetail = () => {
                         :
                         <button className="invoiceDetailMarkButton" onClick={handleClickUnpaid}>Mark as Unpaid</button>
                     }
+            </div>
             </div>
             {
                 updateInvoice
