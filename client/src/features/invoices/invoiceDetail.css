@@ -30,7 +30,7 @@
 }
 
 .invoiceDetailBackButton:hover {
-    border: 1px solid #868689;;
+    border: 1px solid #868689;
 }
 
 .invoiceDetailBackArrow {
@@ -139,12 +139,77 @@
 }
 
 .invoiceDetailInfoHeadLeftContainer {
-    margin-left: 20px;
+    margin-left: 35px;
+}
+
+.invoiceDetailInvoiceNumber {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.invoiceDetailHashtag {
+    font-size: 15px;
+    color: #868689;
+    margin-right: 3px;
+}
+
+.invoiceDetailDescription {
+    margin-top: 5px;
+    font-size: 15px;
 }
 
 .invoiceDetailInfoHeadRightContainer {
     display: flex;
     flex-direction: column;
     align-items: end;
-    margin-right: 20px;
+    margin-right: 35px;
+    font-size: 15px;
+}
+
+.invoiceDetailInfoDetailsContainer {
+    width: 100%;
+    height: 160px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invoiceDetailInfoDetailsLeftContainer {
+    margin-left: 35px;
+}
+
+.invoiceDetailInvoiceDateContianer {
+    margin-bottom: 10px;
+}
+
+.invoiceDetailPaymentDueContainer {
+    margin-top: 10px;
+}
+
+.invoiceDetailInfoDetailsLable {
+    font-size: 15px;
+    color: #868689;
+}
+
+.invoiceDetailInfoDetailsValue {
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.invoiceDetailInfoDetailsRightContainer {
+    margin-right: 35px;
+}
+
+.invoiceDetailItemsContainer, .invoiceDetailTableContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invoiceDetailTableHeader, .invoiceDetailItemContainer, .invoiceDetailBottomLineContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }

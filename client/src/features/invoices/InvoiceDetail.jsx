@@ -112,7 +112,7 @@ const InvoiceDetail = () => {
                 <div className="invoiceDetailInvoiceInfoContainer">
                     <div className="invoiceDetailInfoHeadContainer">
                         <div className="invoiceDetailInfoHeadLeftContainer">
-                            <p className="invoiceDetailInvoiceNumber">#{thisInvoice.invoice_id}</p>
+                            <p className="invoiceDetailInvoiceNumber"><span className="invoiceDetailHashtag">#</span>{thisInvoice.invoice_id}</p>
                             <p className="invoiceDetailDescription">{thisInvoice.description}</p>
                         </div>
                         <div className="invoiceDetailInfoHeadRightContainer">
@@ -125,25 +125,25 @@ const InvoiceDetail = () => {
                     <div className="invoiceDetailInfoDetailsContainer">
                         <div className="invoiceDetailInfoDetailsLeftContainer">
                             <div className="invoiceDetailInvoiceDateContianer">
-                                <p className="invoiceDetailInfoDetailsLeftLable">Invoice Date</p>
-                                <p className="invoiceDetailInfoDetailsLeftValue">{formatDate(thisInvoice.created_at.split('T')[0])}</p>
+                                <p className="invoiceDetailInfoDetailsLable">Invoice Date</p>
+                                <p className="invoiceDetailInfoDetailsValue">{formatDate(thisInvoice.created_at.split('T')[0])}</p>
                             </div>
                             <div className="invoiceDetailPaymentDueContainer">
-                                <p className="invoiceDetailInfoDetailsLeftLable">Payment Due</p>
-                                <p className="invoiceDetailInfoDetailsLeftValue">{formatDate(thisInvoice.payment_due.split('T')[0])}</p>
+                                <p className="invoiceDetailInfoDetailsLable">Payment Due</p>
+                                <p className="invoiceDetailInfoDetailsValue">{formatDate(thisInvoice.payment_due.split('T')[0])}</p>
                             </div>
                         </div>
                         <div className="invoiceDetailInfoDetailsCenterContainer">
-                            <p className="invoiceDetailClientLable">Bill To</p>
-                            <p className="invoiceDetailClientName">{thisInvoice.client_name}</p>
-                            <p className="invoiceDetailClientAddressItem">{thisInvoice.client_street}</p>
-                            <p className="invoiceDetailClientAddressItem">{thisInvoice.client_city}</p>
-                            <p className="invoiceDetailClientAddressItem">{thisInvoice.client_postcode}</p>
-                            <p className="invoiceDetailClientAddressItem">{thisInvoice.client_country}</p>
+                            <p className="invoiceDetailInfoDetailsLable">Bill To</p>
+                            <p className="invoiceDetailInfoDetailsValue">{thisInvoice.client_name}</p>
+                            <p className="invoiceDetailInfoDetailsLable">{thisInvoice.client_street}</p>
+                            <p className="invoiceDetailInfoDetailsLable">{thisInvoice.client_city}</p>
+                            <p className="invoiceDetailInfoDetailsLable">{thisInvoice.client_postcode}</p>
+                            <p className="invoiceDetailInfoDetailsLable">{thisInvoice.client_country}</p>
                         </div>
                         <div className="invoiceDetailInfoDetailsRightContainer">
-                            <p className="invoiceDetailEmailLable">Send to</p>
-                            <p className="invoiceDetailEmailValue">{thisInvoice.client_email}</p>
+                            <p className="invoiceDetailInfoDetailsLable">Send to</p>
+                            <p className="invoiceDetailInfoDetailsValue">{thisInvoice.client_email}</p>
                         </div>
                     </div>
                     <div className="invoiceDetailItemsContainer">
