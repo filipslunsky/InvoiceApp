@@ -205,6 +205,58 @@
     background-color: #f25552;
 }
 
-@media (min-width: 568px) and (max-width: 1023px) {}
+@media (min-width: 568px) and (max-width: 1023px) {
+    .formInvoiceMainContainer {
+        background-color: white;
+        height: 87.6vh;
+        position: absolute;
+        left: 0px;
+        top: 75px;
+        padding: 20px 0 0 45px;
+        width: 75%;
+        border-radius: 0 20px 20px 0;
+        left: -75%;
+        animation: slideRight 0.6s ease-out forwards;
+        box-shadow: 2px 2px 2px black;
+        display: flex;
+        flex-direction: column;
+    }
 
-@media (max-width: 567px) {}
+    @keyframes slideRight {
+        0% {
+            left: -75%;
+        }
+        100% {
+            left: 0px;
+        }
+    }
+
+    .billToLable {
+        margin-right: 300px;
+    }
+
+    .formInvoiceItemQuantityContainer, .formInvoiceItemPriceContainer {
+        width: 48%;
+    }
+}
+
+@media (max-width: 567px) {
+    .formInvoiceMainContainer {
+        height: 87vh;
+        position: absolute;
+        left: 0px;
+        top: 75px;
+        padding: 20px 0 0 15px;
+        width: 100%;
+        border-radius: 0;
+        animation: none;
+    }
+
+    .formInvoiceFromCityContainer, .formInvoiceFromPostalContainer, .formInvoiceToCityContainer, .formInvoiceToPostalContainer {
+        width: 48%;
+    }
+
+    .formInvoiceFromCountryContainer, .formInvoiceToNameContainer, .formInvoiceToEmailContainer, .formInvoiceToCountryContainer, .formInvoiceToDateContainer, .formInvoiceToTermsContainer {
+        width: 100%;
+    }
+}
