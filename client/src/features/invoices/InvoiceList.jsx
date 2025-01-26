@@ -57,7 +57,7 @@ const InvoiceList = () => {
                             <option value="pending">pending</option>
                             <option value="paid">paid</option>
                         </select>
-                        <button className="newInvoiceButton" onClick={handleClickNew}><img className="invoiceListPlusIcon" src={plusIcon} alt="plus icon" />New Invoice</button>
+                        <button className="newInvoiceButton" onClick={handleClickNew}><img className="invoiceListPlusIcon" src={plusIcon} alt="plus icon" /><span className="newInvoice">New Invoice</span><span className="newInvoiceMobile">New</span></button>
                     </div>                
                 </div>
                 <div className="invoiceItemsContainer">

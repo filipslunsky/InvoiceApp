@@ -78,6 +78,10 @@
     margin-right: 10px;
 }
 
+.newInvoiceMobile {
+    display: none;
+}
+
 .invoiceItemsContainer {
     width: 70%;
     display: flex;
@@ -92,4 +96,41 @@
 
 .invoiceItemsContainer::-webkit-scrollbar {
     display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .invoiceListControlsContainer {
+        width: 90%;
+    }
+
+    .invoiceItemsContainer {
+        width: 90%;
+    }
+}
+
+@media (max-width: 767px) {
+    .invoiceListControlsContainer {
+        width: 95%;
+    }
+
+    .invoiceListControlsRightContainer {
+        width: 50%;
+    }
+
+    .invoiceItemsContainer {
+        width: 95%;
+    }
+
+    .newInvoiceButton{
+        width: 80px;
+        height: 36px;
+    }
+
+    .newInvoiceMobile {
+        display: inline;
+    }
+
+    .newInvoice {
+        display: none;
+    }
 }

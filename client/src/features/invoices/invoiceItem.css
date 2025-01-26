@@ -82,3 +82,8 @@
 .invoiceItemDetailButton:hover {
     border: 1px solid #eeeef0;
 }
+
+@media (min-width: 768px) and (max-width: 1023px) {}
+
+@media (max-width: 767px) {}
+
