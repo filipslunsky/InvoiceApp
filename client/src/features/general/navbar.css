@@ -60,7 +60,7 @@
     border-radius: 20px;
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 568px) and (max-width: 1023px) {
     .navbarMainContainer {
         flex-direction: row;
         width: 100%;
@@ -87,7 +87,7 @@
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 567px) {
     .navbarMainContainer {
         flex-direction: row;
         width: 100%;

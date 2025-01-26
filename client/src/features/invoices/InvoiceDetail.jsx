@@ -157,22 +157,52 @@ const InvoiceDetail = () => {
                             {
                                 thisInvoice.items.map(item => {
                                     return (
-                                        <div className="invoiceDetailItemContainer" key={item.item_id}>
-                                            <p className="invoiceDetailItemNameValue">{item.name}</p>
-                                            <p className="invoiceDetailQuantityValue">{item.quantity}</p>
-                                            <p className="invoiceDetailPriceValue">£ {formatNumber(item.price)}</p>
-                                            <p className="invoiceDetailTotalValue">£ {formatNumber(item.total)}</p>
-                                        </div>
+                                        <>
+                                            <div className="invoiceDetailItemContainer" key={item.item_id}>
+                                                <p className="invoiceDetailItemNameValue">{item.name}</p>
+                                                <p className="invoiceDetailQuantityValue">{item.quantity}</p>
+                                                <p className="invoiceDetailPriceValue">£ {formatNumber(item.price)}</p>
+                                                <p className="invoiceDetailTotalValue">£ {formatNumber(item.total)}</p>
+                                            </div>
+                                            <div className="invoiceDetailItemContainerMobile" key={item.item_id}>
+                                                <div className="invoiceDetailMobileItemNameContainer">
+                                                    <span className="invoiceDetailItemNameValue">{item.name}</span>
+                                                    <span className="invoiceDetailPriceValue">{item.quantity} x £ {formatNumber(item.price)}</span>
+                                                </div>
+                                                <span className="invoiceDetailTotalValue">£ {formatNumber(item.total)}</span>
+                                            </div>
+                                        </>
                                     )
                                 })
                             }
                         </div>
                         <div className="invoiceDetailBottomLineContainer">
-                            <p className="invoiceDetailBottomLineLable">Amount Due</p>
+                            <p className="invoiceDetailBottomLineLable">Grand Total</p>
                             <p className="invoiceDetailBottomLineValue">£ {formatNumber(thisInvoice.total)}</p>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="invoiceDetailControlsContainerMobile">
+                <button className="invoiceDetailEditButton" onClick={handleClickEdit}>Edit</button>
+                {
+                    clickDelete
+                    ?
+                    <div className="invoiceDetailDeleteContainer">
+                        <span className="invoiceDetailDeleteConfirmQuestion">Are you sure?</span>
+                        <button className="invoiceDetailDeleteYesButton" onClick={handleClickDeleteYes}>Yes</button>
+                        <button className="invoiceDetailDeleteNoButton" onClick={handleToggleDelete}>No</button>
+                    </div>
+                    :
+                    <button className="invoiceDetailDeleteButton" onClick={handleToggleDelete}>Delete</button>
+                }
+                    {
+                        thisInvoice.status === 'pending'
+                        ?
+                        <button className="invoiceDetailMarkButton" onClick={handleClickPaid}>Mark as Paid</button>
+                        :
+                        <button className="invoiceDetailMarkButton" onClick={handleClickUnpaid}>Mark as Unpaid</button>
+                    }
             </div>
             {
                 updateInvoice
