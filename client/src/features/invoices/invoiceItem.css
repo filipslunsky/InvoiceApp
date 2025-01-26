@@ -9,6 +9,18 @@
     border-radius: 15px;
 }
 
+.invoiceItemMainContainer.nightMode {
+    background-color: #1f2138;
+}
+
+.invoiceItemMainContainer.nightMode .invoiceItemId {
+    color: white;
+}
+
+.invoiceItemMainContainer.nightMode .invoiceItemTotal{
+    color: white;
+}
+
 .invoiceItemMainContainerMobile {
     display: none;
 }

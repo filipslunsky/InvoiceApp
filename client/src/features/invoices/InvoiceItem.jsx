@@ -31,7 +31,7 @@ const InvoiceItem = ({invoiceId, dueDate, clientName, total, invoiceStatus}) => 
 
     return (
         <>
-            <div className="invoiceItemMainContainer">
+            <div className={nightMode ? "invoiceItemMainContainer nightMode" : "invoiceItemMainContainer"}>
                 <div className="invoiceItemId"><span className="invoiceItemHashtag">#</span>{invoiceId}</div>
                 <div className="invoiceItemDueDate">Due {formatDate(dueDate.split('T')[0])}</div>
                 <div className="invoiceItemClientName">{clientName}</div>
