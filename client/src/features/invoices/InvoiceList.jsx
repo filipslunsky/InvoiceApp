@@ -4,6 +4,7 @@ import { getInvoices, toggleNewInvoice } from "./state/slice";
 import InvoiceItem from "./InvoiceItem";
 import NewInvoice from "./NewInvoice";
 import plusIcon from '../../assets/img/icon-plus.svg';
+import './invoiceList.css';
 
 const InvoiceList = () => {
     const dispatch = useDispatch();
@@ -39,21 +40,27 @@ const InvoiceList = () => {
         <> 
             <div className="invoiceListMainContainer">
                 <div className="invoiceListControlsContainer">
-                    <h2 className="invoiceListMainTitle">Invoices</h2>
-                    <span className="invoiceListSubtitle">There {invoices.length === 1 ? 'is' : 'are'} {invoices.length} total invoice{invoices.length === 1 ? '' : 's'}.</span>
-                    <select
-                    name="statusFilter"
-                    id="statusFilter"
-                    onChange={(e) => {handleSelect(e)}}
-                    defaultValue={invoiceStatus}
-                    >
-                        <option value="">Filter</option>
-                        <option value="draft">draft</option>
-                        <option value="pending">pending</option>
-                        <option value="paid">paid</option>
-                    </select>
-                    <button className="newInvoiceButton" onClick={handleClickNew}><img src={plusIcon} alt="plus icon" />New Invoice</button>
+                    <div className="invoiceListControlsLeftContainer">
+                        <h2 className="invoiceListMainTitle">Invoices</h2>
+                        <span className="invoiceListSubtitle">There {invoices.length === 1 ? 'is' : 'are'} {invoices.length} total invoice{invoices.length === 1 ? '' : 's'}.</span>
+                    </div>
+                    <div className="invoiceListControlsRightContainer">
+                        <select
+                        className="invoiceListStatusFilter"
+                        name="statusFilter"
+                        id="statusFilter"
+                        onChange={(e) => {handleSelect(e)}}
+                        defaultValue={invoiceStatus}
+                        >
+                            <option value="">Filter by Status</option>
+                            <option value="draft">draft</option>
+                            <option value="pending">pending</option>
+                            <option value="paid">paid</option>
+                        </select>
+                        <button className="newInvoiceButton" onClick={handleClickNew}><img className="invoiceListPlusIcon" src={plusIcon} alt="plus icon" />New Invoice</button>
+                    </div>                
                 </div>
+                <div className="invoiceItemsContainer">
                 {
                     filteredInvoices.map(item => {
                         return (
@@ -68,6 +75,7 @@ const InvoiceList = () => {
                         )
                     })
                 }
+                </div>
             </div>
             {
                 newInvoice
