@@ -43,6 +43,10 @@
     background-color: #0b0e17;
 }
 
+.invoiceDetailMainContainer.nightMode .invoiceDetailItemNameValue, .invoiceDetailMainContainer.nightMode .invoiceDetailQuantityValue, .invoiceDetailMainContainer.nightMode .invoiceDetailPriceValue, .invoiceDetailMainContainer.nightMode .invoiceDetailTotalValue {
+    color: white;
+}
+
 .invoiceDetailControlsContainerMobile.nightMode {
     background-color: #141625;
 }
@@ -156,6 +160,10 @@
 .invoiceDetailEditButton {
     background-color: #eeeef0;
     color: black;
+}
+
+.invoiceDetailDeleteConfirmQuestion {
+    color: #868689;
 }
 
 .invoiceDetailDeleteButton, .invoiceDetailDeleteYesButton {

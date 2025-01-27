@@ -77,6 +77,10 @@ const EditInvoice = ({id}) => {
         return date.toISOString();
     };
 
+    const formatNumber = (number) => {
+        return number.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    };
+
     const handleEditInvoice = () => {
         const dueDate = calculateDueDate(toDateRef.current.value, Number(toTermsRef.current.value));
 
@@ -124,7 +128,7 @@ const EditInvoice = ({id}) => {
     return (
         <>
             <div className={nightMode ? "formInvoiceMainContainer nightMode" : "formInvoiceMainContainer"}>
-                <h2 className="formInvoiceHeading">Edit Invoice {id}</h2>
+                <h2 className="formInvoiceHeading">Edit Invoice #{id}</h2>
                 <div className="formInvoiceFormContentContainer">
                     <div className="formInvoiceMainElementsContainer">
                         {/* Bill From Section */}
@@ -231,7 +235,7 @@ const EditInvoice = ({id}) => {
                                 </div>
                                 <div className="formInvoiceItemTotalPriceContainer">
                                     <span className="formInvoiceItemTotalLable">Total Price</span>
-                                    <span className="formInvoiceItemTotalValue">£ {(item.quantity * item.price).toFixed(2)}</span>
+                                    <span className="formInvoiceItemTotalValue">£ {formatNumber((item.quantity * item.price))}</span>
                                 </div>
                                 <button className="itemRemoveButton" onClick={() => removeItem(index)}>
                                     <img className='trashIcon' src={trashIcon} alt="delete icon" /> delete
