@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getInvoices, editInvoice, deleteInvoice, toggleUpdateInvoice } from "./state/slice";
@@ -156,23 +156,23 @@ const InvoiceDetail = () => {
                                 <p className="invoiceDetailTotalLable">Total</p>
                             </div>
                             {
-                                thisInvoice.items.map(item => {
+                                thisInvoice.items.map((item, index) => {
                                     return (
-                                        <>
-                                            <div className="invoiceDetailItemContainer" key={item.item_id}>
+                                        <React.Fragment key={item.item_id}>
+                                            <div className="invoiceDetailItemContainer">
                                                 <p className="invoiceDetailItemNameValue">{item.name}</p>
                                                 <p className="invoiceDetailQuantityValue">{item.quantity}</p>
                                                 <p className="invoiceDetailPriceValue">£ {formatNumber(item.price)}</p>
                                                 <p className="invoiceDetailTotalValue">£ {formatNumber(item.total)}</p>
                                             </div>
-                                            <div className="invoiceDetailItemContainerMobile" key={item.item_id}>
+                                            <div className="invoiceDetailItemContainerMobile">
                                                 <div className="invoiceDetailMobileItemNameContainer">
                                                     <span className="invoiceDetailItemNameValue">{item.name}</span>
                                                     <span className="invoiceDetailPriceValue">{item.quantity} x £ {formatNumber(item.price)}</span>
                                                 </div>
                                                 <span className="invoiceDetailTotalValue">£ {formatNumber(item.total)}</span>
                                             </div>
-                                        </>
+                                        </React.Fragment>
                                     )
                                 })
                             }
