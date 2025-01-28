@@ -58,12 +58,22 @@ const InvoiceDetail = () => {
     };
 
     const handleClickPaid = () => {
-        const invoiceData = {...thisInvoice, status: 'paid'};
+        const invoiceData = {
+            ...thisInvoice,
+            status: 'paid',
+            created_at: new Date(thisInvoice.created_at).toISOString(),
+            payment_due: new Date(thisInvoice.payment_due).toISOString(),
+        };
         dispatch(editInvoice(invoiceData));
     };
     
     const handleClickUnpaid = () => {
-        const invoiceData = {...thisInvoice, status: 'pending'};
+        const invoiceData = {
+            ...thisInvoice,
+            status: 'pending',
+            created_at: new Date(thisInvoice.created_at).toISOString(),
+            payment_due: new Date(thisInvoice.payment_due).toISOString(),
+        };
         dispatch(editInvoice(invoiceData));
     };
 
