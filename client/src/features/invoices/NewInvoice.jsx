@@ -108,8 +108,6 @@ const NewInvoice = () => {
             items: itemData
         };
 
-        console.log(invoiceData);
-
         dispatch(createNewInvoice(invoiceData));
         dispatch(toggleNewInvoice());
     };

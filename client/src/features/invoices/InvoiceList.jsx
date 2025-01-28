@@ -19,7 +19,7 @@ const InvoiceList = () => {
 
     useEffect(() => {
         dispatch(getInvoices());
-    }, [dispatch]);
+    }, [dispatch, addInvoiceStatus]);
 
     useEffect(() => {
         setFilteredInvoices(invoices);
