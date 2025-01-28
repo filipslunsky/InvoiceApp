@@ -23,6 +23,7 @@ const NewInvoice = () => {
     const toDateRef = useRef();
     const toTermsRef = useRef();
     const toDescriptionRef = useRef();
+    const toInvoiceNumberRef = useRef();
 
     const [items, setItems] = useState([{ name: "", quantity: 1, price: 0, total: 0 }]);
     const itemRefs = useRef([]);
@@ -87,6 +88,7 @@ const NewInvoice = () => {
                 (parseFloat(itemRefs.current[index].price.current.value) || 0),
         }));
         const invoiceData = {
+            invoice_id: toInvoiceNumberRef.current.value,
             created_at: issueDate,
             payment_due: dueDate,
             description: toDescriptionRef.current.value,
@@ -105,6 +107,8 @@ const NewInvoice = () => {
             total: totalPrice,
             items: itemData
         };
+
+        console.log(invoiceData);
 
         dispatch(createNewInvoice(invoiceData));
         dispatch(toggleNewInvoice());
@@ -178,6 +182,10 @@ const NewInvoice = () => {
                                     <option value="60">Next 60 Days</option>
                                     <option value="90">Next 90 Days</option>
                                 </select>
+                            </div>
+                            <div className="formInvoiceToInvoiceNumberContainer">
+                                <span className="formInvoiceToInvoiceNumberLable">Invoice Number</span>
+                                <input ref={toInvoiceNumberRef} type="text" className="formInvoiceToInvoiceNumberInput" />
                             </div>
                             <div className="formInvoiceToDescriptionContainer">
                                 <span className="formInvoiceToDescriptionLable">Description</span>

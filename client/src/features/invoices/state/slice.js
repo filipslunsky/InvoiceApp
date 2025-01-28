@@ -25,17 +25,15 @@ export const getInvoices = createAsyncThunk('inovices/getInvoices', async (_, { 
 });
 
 export const createNewInvoice = createAsyncThunk('invoices/createNewInvoice', async (newInvoiceData, { rejectWithValue}) => {
-    const invoiceId = uuidv4();
     const items = newInvoiceData.items;
 
     const itemsWithInvoiceId = newInvoiceData.items.map((item) => ({
         ...item,
-        invoice_id: invoiceId,
+        invoice_id: newInvoiceData.invoice_id,
     }));
 
     const invoiceData = {
         ...newInvoiceData,
-        invoice_id: invoiceId,
         items: itemsWithInvoiceId,
     };
 

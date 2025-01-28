@@ -83,7 +83,7 @@ input:focus, select:focus {
     font-weight: 600;
     display: inline-block;
     margin-bottom: 10px;
-    margin-right: 250px;
+    margin-right: 60%;
 }
 
 .formInvoiceBillFromContainer, .formInvoiceBillToContainer, .formInvoiceItemsContainer, .formInvoiceItem {
@@ -94,12 +94,12 @@ input:focus, select:focus {
     justify-content: space-between;
 }
 
-.formInvoiceFromStreetContainer, .formInvoiceFromCityContainer, .formInvoiceFromPostalContainer, .formInvoiceFromCountryContainer, .formInvoiceToNameContainer, .formInvoiceToEmailContainer, .formInvoiceToStreetContainer, .formInvoiceToCityContainer, .formInvoiceToPostalContainer, .formInvoiceToCountryContainer, .formInvoiceToDateContainer, .formInvoiceToTermsContainer, .formInvoiceToDescriptionContainer, .formInvoiceItemNameContainer, .formInvoiceItemQuantityContainer, .formInvoiceItemPriceContainer, .formInvoiceItemTotalPriceContainer {
+.formInvoiceFromStreetContainer, .formInvoiceFromCityContainer, .formInvoiceFromPostalContainer, .formInvoiceFromCountryContainer, .formInvoiceToNameContainer, .formInvoiceToEmailContainer, .formInvoiceToStreetContainer, .formInvoiceToCityContainer, .formInvoiceToPostalContainer, .formInvoiceToCountryContainer, .formInvoiceToDateContainer, .formInvoiceToTermsContainer, .formInvoiceToDescriptionContainer, .formInvoiceToInvoiceNumberContainer, .formInvoiceItemNameContainer, .formInvoiceItemQuantityContainer, .formInvoiceItemPriceContainer, .formInvoiceItemTotalPriceContainer {
     display: flex;
     flex-direction: column;
 }
 
-.formInvoiceFromStreetLable, .formInvoiceFromCityLable, .formInvoiceFromPostalLable, .formInvoiceFromCountryLable, .formInvoiceToNameLable, .formInvoiceToEmailLable, .formInvoiceToStreetLable, .formInvoiceToCityLable, .formInvoiceToPostalLable, .formInvoiceToCountryLable, .formInvoiceToDateLable, .formInvoiceToTermsLable, .formInvoiceToDescriptionLable, .formInvoiceItemNameLable, .formInvoiceItemQuantityLable, .formInvoiceItemPriceLable, .formInvoiceItemTotalPriceLable, .formInvoiceQuantityLable {
+.formInvoiceFromStreetLable, .formInvoiceFromCityLable, .formInvoiceFromPostalLable, .formInvoiceFromCountryLable, .formInvoiceToNameLable, .formInvoiceToEmailLable, .formInvoiceToStreetLable, .formInvoiceToCityLable, .formInvoiceToPostalLable, .formInvoiceToCountryLable, .formInvoiceToDateLable, .formInvoiceToTermsLable, .formInvoiceToDescriptionLable, .formInvoiceToInvoiceNumberLable, .formInvoiceItemNameLable, .formInvoiceItemQuantityLable, .formInvoiceItemPriceLable, .formInvoiceItemTotalPriceLable, .formInvoiceQuantityLable {
     font-size: 12px;
     color: #868689;
     margin: 5px 0;
@@ -113,7 +113,7 @@ input:focus, select:focus {
     width: 30%;
 }
 
-.formInvoiceFromStreetInput, .formInvoiceFromCityInput, .formInvoiceFromPostalInput, .formInvoiceFromCountryInput, .formInvoiceToNameInput, .formInvoiceToEmailInput, .formInvoiceToStreetInput, .formInvoiceToCityInput, .formInvoiceToPostalInput, .formInvoiceToCountryInput, .formInvoiceToDateInput, .formInvoiceToTermsInput, .formInvoiceToDescriptionInput, .formInvoiceItemNameInput, .formInvoiceItemQuantityInput, .formInvoiceItemPriceInput, .formInvoiceItemTotalPriceInput, .formInvoiceToTermsSelect {
+.formInvoiceFromStreetInput, .formInvoiceFromCityInput, .formInvoiceFromPostalInput, .formInvoiceFromCountryInput, .formInvoiceToNameInput, .formInvoiceToEmailInput, .formInvoiceToStreetInput, .formInvoiceToCityInput, .formInvoiceToPostalInput, .formInvoiceToCountryInput, .formInvoiceToDateInput, .formInvoiceToTermsInput, .formInvoiceToDescriptionInput, .formInvoiceToInvoiceNumberInput, .formInvoiceItemNameInput, .formInvoiceItemQuantityInput, .formInvoiceItemPriceInput, .formInvoiceItemTotalPriceInput, .formInvoiceToTermsSelect {
     height: 25px;
     border-radius: 10px;
     border: 1px solid #868689;
@@ -137,6 +137,10 @@ input:focus, select:focus {
 }
 
 .formInvoiceToDescriptionContainer {
+    width: 100%;
+}
+
+.formInvoiceToInvoiceNumberContainer {
     width: 100%;
 }
 
