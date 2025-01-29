@@ -5,13 +5,14 @@ const INVOICES_URL = `${import.meta.env.VITE_API_URL}/invoices`;
 
 const initialState = {
     invoices: [],
-    invoicesStatus: '',
-    editInvoiceStatus: '',
-    addInvoiceStatus: '',
-    deleteInvoiceStatus: '',
-    message: '',
+    invoicesStatus: 'idle',
+    editInvoiceStatus: 'idle',
+    addInvoiceStatus: 'idle',
+    deleteInvoiceStatus: 'idle',
+    message: null,
     newInvoice: false,
     updateInvoice: false,
+    statusMessageDisplay: false,
 };
 
 export const getInvoices = createAsyncThunk('inovices/getInvoices', async (_, { rejectWithValue }) => {
@@ -73,6 +74,21 @@ const invoicesSlice = createSlice({
         toggleUpdateInvoice: (state) => {
             state.updateInvoice = !state.updateInvoice;
         },
+        resetMessage: (state) => {
+            state.message = null;
+        },
+        resetAddInvoiceStatus: (state) => {
+            state.addInvoiceStatus = 'idle';
+        },
+        resetEditInvoiceStatus: (state) => {
+            state.editInvoiceStatus = 'idle';
+        },
+        resetDeleteInvoiceStatus: (state) => {
+            state.deleteInvoiceStatus = 'idle';
+        },
+        toggleStatusMessageDisplay: (state) => {
+            state.statusMessageDisplay = !state.statusMessageDisplay;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -123,5 +139,5 @@ const invoicesSlice = createSlice({
     },
 });
 
-export const { toggleNewInvoice, toggleUpdateInvoice } = invoicesSlice.actions;
+export const { toggleNewInvoice, toggleUpdateInvoice, resetMessage, resetAddInvoiceStatus, resetEditInvoiceStatus, resetDeleteInvoiceStatus, toggleStatusMessageDisplay } = invoicesSlice.actions;
 export default invoicesSlice.reducer;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getInvoices, toggleNewInvoice } from "./state/slice";
+import { getInvoices, toggleNewInvoice, resetMessage, resetAddInvoiceStatus, resetDeleteInvoiceStatus, toggleStatusMessageDisplay } from "./state/slice";
 import InvoiceItem from "./InvoiceItem";
 import NewInvoice from "./NewInvoice";
 import plusIcon from '../../assets/img/icon-plus.svg';
@@ -13,6 +13,9 @@ const InvoiceList = () => {
     const newInvoice = useSelector(state => state.invoices.newInvoice);
     const addInvoiceStatus = useSelector(state => state.invoices.addInvoiceStatus);
     const nightMode = useSelector(state => state.visual.nightMode);
+    const message = useSelector(state => state.invoices.message);
+    const deleteInvoiceStatus = useSelector(state => state.invoices.deleteInvoiceStatus);
+    const statusMessageDisplay = useSelector(state => state.invoices.statusMessageDisplay);
 
     const [invoiceStatus, setInvoiceStatus] = useState('');
     const [filteredInvoices, setFilteredInvoices] = useState(invoices);
@@ -28,6 +31,21 @@ const InvoiceList = () => {
     useEffect(() => {
         setFilteredInvoices(invoices.filter(item => item.status.includes(invoiceStatus)));
     }, [invoiceStatus]);
+
+     useEffect(()=> {
+        if (addInvoiceStatus === 'success' || addInvoiceStatus === 'failed') {
+            console.log(message);
+            dispatch(resetMessage());
+            dispatch(resetAddInvoiceStatus());
+            }
+    }, [addInvoiceStatus]);
+
+    useEffect(()=> {
+        if (deleteInvoiceStatus === 'success' || deleteInvoiceStatus === 'failed')
+            console.log(message);
+            dispatch(resetMessage());
+            dispatch(resetDeleteInvoiceStatus());
+    }, [deleteInvoiceStatus]);
 
     const handleSelect = (e) => {
         setInvoiceStatus(e.target.value);

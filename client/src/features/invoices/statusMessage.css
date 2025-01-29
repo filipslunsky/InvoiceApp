@@ -1,0 +1,13 @@
+.statusMessageMainContainer {
+    width: 150px;
+    height: 100px;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    z-index: 10;
+    background-color: aquamarine;
+}
+
+@media (min-width: 568px) and (max-width: 1023px) {}
+
+@media (min-width: 567px) {}

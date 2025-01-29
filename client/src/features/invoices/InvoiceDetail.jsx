@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getInvoices, editInvoice, deleteInvoice, toggleUpdateInvoice } from "./state/slice";
+import { getInvoices, editInvoice, deleteInvoice, toggleUpdateInvoice, resetMessage, resetEditInvoiceStatus, toggleStatusMessageDisplay } from "./state/slice";
+import StatusMessage from "./StatusMessage";
 import EditInvoice from "./EditInvoice";
 import leftArrowIcon from '../../assets/img/icon-arrow-left.svg';
 import './invoiceDetail.css';
@@ -16,6 +17,7 @@ const InvoiceDetail = () => {
     const message = useSelector(state => state.invoices.message);
     const updateInvoice = useSelector(state => state.invoices.updateInvoice);
     const nightMode = useSelector(state => state.visual.nightMode);
+    const statusMessageDisplay = useSelector(state => state.invoices.statusMessageDisplay);
 
     const { id } = useParams();
 
@@ -24,6 +26,14 @@ const InvoiceDetail = () => {
     useEffect(() => {
         dispatch(getInvoices());
     }, [deleteInvoiceStatus, editInvoiceStatus]);
+
+    useEffect(()=> {
+        if (editInvoiceStatus === 'success' || editInvoiceStatus === 'failed')
+            console.log(message);
+            dispatch(toggleStatusMessageDisplay());
+            dispatch(resetMessage());
+            dispatch(resetEditInvoiceStatus());
+    }, [editInvoiceStatus]);
 
     const thisInvoice = invoices.filter(item => item.invoice_id == id)[0];
 
@@ -55,6 +65,7 @@ const InvoiceDetail = () => {
     const handleClickDeleteYes = () => {
         dispatch(deleteInvoice(id));
         navigate('/invoices');
+        dispatch(resetMessage());
     };
 
     const handleClickPaid = () => {
@@ -88,7 +99,7 @@ const InvoiceDetail = () => {
     };
 
     return (
-        <>
+        <> 
             <div className={nightMode ? updateInvoice ? "invoiceDetailMainContainerSuppressed nightMode" : "invoiceDetailMainContainer nightMode" : updateInvoice ? "invoiceDetailMainContainerSuppressed" : "invoiceDetailMainContainer"}>
                 <div className="invoiceDetailBackContainer">
                     <button className="invoiceDetailBackButton" onClick={handleClickBack}><img className="invoiceDetailBackArrow" src={leftArrowIcon} alt="left arrow" />Go back</button>
