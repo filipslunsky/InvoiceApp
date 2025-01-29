@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getInvoices, toggleNewInvoice, resetMessage, resetAddInvoiceStatus, resetDeleteInvoiceStatus, toggleStatusMessageDisplay } from "./state/slice";
+import { getInvoices, toggleNewInvoice, resetAddInvoiceStatus, resetDeleteInvoiceStatus, setStatusMessage } from "./state/slice";
 import InvoiceItem from "./InvoiceItem";
 import NewInvoice from "./NewInvoice";
+import StatusMessage from "./StatusMessage";
 import plusIcon from '../../assets/img/icon-plus.svg';
 import './invoiceList.css';
 
@@ -13,9 +14,8 @@ const InvoiceList = () => {
     const newInvoice = useSelector(state => state.invoices.newInvoice);
     const addInvoiceStatus = useSelector(state => state.invoices.addInvoiceStatus);
     const nightMode = useSelector(state => state.visual.nightMode);
-    const message = useSelector(state => state.invoices.message);
     const deleteInvoiceStatus = useSelector(state => state.invoices.deleteInvoiceStatus);
-    const statusMessageDisplay = useSelector(state => state.invoices.statusMessageDisplay);
+    const statusMessage = useSelector(state => state.invoices.statusMessage);
 
     const [invoiceStatus, setInvoiceStatus] = useState('');
     const [filteredInvoices, setFilteredInvoices] = useState(invoices);
@@ -33,18 +33,27 @@ const InvoiceList = () => {
     }, [invoiceStatus]);
 
      useEffect(()=> {
-        if (addInvoiceStatus === 'success' || addInvoiceStatus === 'failed') {
-            console.log(message);
-            dispatch(resetMessage());
-            dispatch(resetAddInvoiceStatus());
+        if (addInvoiceStatus === 'success') {
+                dispatch(setStatusMessage({ text: "Invoice added successfully!", visible: true, style: 'success' }));
+                setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 3000);
+                dispatch(resetAddInvoiceStatus());
+            } else if (addInvoiceStatus === 'failed') {
+                dispatch(setStatusMessage({ text: "Failed to add invoice. Please try again.", visible: true, style: 'failed' }));
+                setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 3000);
+                dispatch(resetAddInvoiceStatus());
             }
     }, [addInvoiceStatus]);
 
     useEffect(()=> {
-        if (deleteInvoiceStatus === 'success' || deleteInvoiceStatus === 'failed')
-            console.log(message);
-            dispatch(resetMessage());
+        if (deleteInvoiceStatus === 'success') {
+            dispatch(setStatusMessage({ text: "Invoice deleted successfully!", visible: true, style: 'success' }));
+            setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 3000);
             dispatch(resetDeleteInvoiceStatus());
+        } else if (deleteInvoiceStatus === 'failed') {
+            dispatch(setStatusMessage({ text: "Failed to delete invoice. Please try again.", visible: true, style: 'failed' }));
+            setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 3000);
+            dispatch(resetDeleteInvoiceStatus());
+        }
     }, [deleteInvoiceStatus]);
 
     const handleSelect = (e) => {
@@ -57,6 +66,7 @@ const InvoiceList = () => {
 
     return (
         <> 
+            {statusMessage.visible && <StatusMessage text={statusMessage.text} style={statusMessage.style} />}
             <div className={nightMode ? newInvoice ? "invoiceListMainContainerSuppressed nightMode" : "invoiceListMainContainer nightMode" : newInvoice ? "invoiceListMainContainerSuppressed" : "invoiceListMainContainer"}>
                 <div className="invoiceListControlsContainer">
                     <div className="invoiceListControlsLeftContainer">

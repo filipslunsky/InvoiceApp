@@ -9,10 +9,14 @@ const initialState = {
     editInvoiceStatus: 'idle',
     addInvoiceStatus: 'idle',
     deleteInvoiceStatus: 'idle',
-    message: null,
     newInvoice: false,
     updateInvoice: false,
     statusMessageDisplay: false,
+    statusMessage: {
+        text: '',
+        style: '',
+        visible: false,
+    },
 };
 
 export const getInvoices = createAsyncThunk('inovices/getInvoices', async (_, { rejectWithValue }) => {
@@ -74,9 +78,6 @@ const invoicesSlice = createSlice({
         toggleUpdateInvoice: (state) => {
             state.updateInvoice = !state.updateInvoice;
         },
-        resetMessage: (state) => {
-            state.message = null;
-        },
         resetAddInvoiceStatus: (state) => {
             state.addInvoiceStatus = 'idle';
         },
@@ -86,8 +87,12 @@ const invoicesSlice = createSlice({
         resetDeleteInvoiceStatus: (state) => {
             state.deleteInvoiceStatus = 'idle';
         },
-        toggleStatusMessageDisplay: (state) => {
-            state.statusMessageDisplay = !state.statusMessageDisplay;
+        setStatusMessage: (state, action) => {
+            state.statusMessage = {
+                text: action.payload.text,
+                visible: action.payload.visible,
+                style: action.payload.style,
+            };
         },
     },
     extraReducers: (builder) => {
@@ -108,36 +113,30 @@ const invoicesSlice = createSlice({
             })
             .addCase(editInvoice.fulfilled, (state, action) => {
                 state.editInvoiceStatus = 'success';
-                state.message = action.payload.message;
             })
             .addCase(editInvoice.rejected, (state, action) => {
                 state.editInvoiceStatus = 'failed';
-                state.message = action.payload.message;
             })
             .addCase(deleteInvoice.pending, (state) => {
                 state.deleteInvoiceStatus = 'loading';
             })
             .addCase(deleteInvoice.fulfilled, (state, action) => {
                 state.deleteInvoiceStatus = 'success';
-                state.message = action.payload.message;
             })
             .addCase(deleteInvoice.rejected, (state, action) => {
                 state.deleteInvoiceStatus = 'failed';
-                state.message = action.payload.message;
             })
             .addCase(createNewInvoice.pending, (state) => {
                 state.addInvoiceStatus = 'loading';
             })
             .addCase(createNewInvoice.fulfilled, (state, action) => {
                 state.addInvoiceStatus = 'success';
-                state.message = action.payload.message;
             })
             .addCase(createNewInvoice.rejected, (state, action) => {
                 state.addInvoiceStatus = 'failed';
-                state.message = action.payload.message;
             })
     },
 });
 
-export const { toggleNewInvoice, toggleUpdateInvoice, resetMessage, resetAddInvoiceStatus, resetEditInvoiceStatus, resetDeleteInvoiceStatus, toggleStatusMessageDisplay } = invoicesSlice.actions;
+export const { toggleNewInvoice, toggleUpdateInvoice, resetAddInvoiceStatus, resetEditInvoiceStatus, resetDeleteInvoiceStatus, setStatusMessage } = invoicesSlice.actions;
 export default invoicesSlice.reducer;

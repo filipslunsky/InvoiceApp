@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getInvoices, editInvoice, deleteInvoice, toggleUpdateInvoice, resetMessage, resetEditInvoiceStatus, toggleStatusMessageDisplay } from "./state/slice";
+import { getInvoices, editInvoice, deleteInvoice, toggleUpdateInvoice, resetEditInvoiceStatus, setStatusMessage } from "./state/slice";
 import StatusMessage from "./StatusMessage";
 import EditInvoice from "./EditInvoice";
 import leftArrowIcon from '../../assets/img/icon-arrow-left.svg';
@@ -14,10 +14,9 @@ const InvoiceDetail = () => {
     const invoices = useSelector(state => state.invoices.invoices);
     const editInvoiceStatus = useSelector(state => state.invoices.editInvoiceStatus);
     const deleteInvoiceStatus = useSelector(state => state.invoices.deleteInvoiceStatus);
-    const message = useSelector(state => state.invoices.message);
     const updateInvoice = useSelector(state => state.invoices.updateInvoice);
     const nightMode = useSelector(state => state.visual.nightMode);
-    const statusMessageDisplay = useSelector(state => state.invoices.statusMessageDisplay);
+    const statusMessage = useSelector(state => state.invoices.statusMessage);
 
     const { id } = useParams();
 
@@ -28,11 +27,15 @@ const InvoiceDetail = () => {
     }, [deleteInvoiceStatus, editInvoiceStatus]);
 
     useEffect(()=> {
-        if (editInvoiceStatus === 'success' || editInvoiceStatus === 'failed')
-            console.log(message);
-            dispatch(toggleStatusMessageDisplay());
-            dispatch(resetMessage());
+        if (editInvoiceStatus === 'success') {
+            dispatch(setStatusMessage({ text: "Invoice updated successfully!", visible: true, style: 'success' }));
+            setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 3000);
             dispatch(resetEditInvoiceStatus());
+        } else if (editInvoiceStatus === 'failed') {
+            dispatch(setStatusMessage({ text: "Failed to update invoice. Please try again.", visible: true, style: 'failed' }));
+            setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 3000);
+            dispatch(resetEditInvoiceStatus());
+        }
     }, [editInvoiceStatus]);
 
     const thisInvoice = invoices.filter(item => item.invoice_id == id)[0];
@@ -65,7 +68,6 @@ const InvoiceDetail = () => {
     const handleClickDeleteYes = () => {
         dispatch(deleteInvoice(id));
         navigate('/invoices');
-        dispatch(resetMessage());
     };
 
     const handleClickPaid = () => {
@@ -100,6 +102,7 @@ const InvoiceDetail = () => {
 
     return (
         <> 
+            {statusMessage.visible && <StatusMessage text={statusMessage.text} style={statusMessage.style} />}
             <div className={nightMode ? updateInvoice ? "invoiceDetailMainContainerSuppressed nightMode" : "invoiceDetailMainContainer nightMode" : updateInvoice ? "invoiceDetailMainContainerSuppressed" : "invoiceDetailMainContainer"}>
                 <div className="invoiceDetailBackContainer">
                     <button className="invoiceDetailBackButton" onClick={handleClickBack}><img className="invoiceDetailBackArrow" src={leftArrowIcon} alt="left arrow" />Go back</button>
