@@ -6,8 +6,8 @@ const StatusMessage = ({text, style}) => {
 
     return (
         <>
-        <div className={nightMode ? "statusMessageMainContainer night" : "statusMessageMainContainer"}>
-            <span className={`statusMessageText ${style}`}>{text}</span>
+        <div className={nightMode ? `statusMessageMainContainer nightMode ${style}` : `statusMessageMainContainer ${style}`}>
+            <span className='statusMessageText'>{text}</span>
         </div>
         </>
     );

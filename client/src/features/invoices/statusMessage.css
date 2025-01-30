@@ -1,13 +1,89 @@
 .statusMessageMainContainer {
-    width: 150px;
+    width: 250px;
     height: 100px;
     position: absolute;
-    top: 30px;
-    right: 20px;
-    z-index: 10;
-    background-color: aquamarine;
+    top: 50px;
+    left: 90px;
+    z-index: 2;
+    border-radius: 20px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: slideSmall 0.3s ease-out forwards;
+    box-shadow: 1px 1px 1px gray;
 }
 
-@media (min-width: 568px) and (max-width: 1023px) {}
+@keyframes slideSmall {
+    0% {
+        left: -90px;
+    }
+    100% {
+        left: 90px;
+    }
+}
 
-@media (min-width: 567px) {}
+.statusMessageMainContainer.success {
+    color: green;
+    background-color: rgb(157, 210, 157);
+    border: 1px solid green;
+}
+
+.statusMessageMainContainer.failed {
+    color: rgb(238, 156, 156);
+    background-color: red;
+    border: 1px solid red;
+}
+
+.statusMessageMainContainer.nightMode.success {
+    color: rgb(157, 210, 157);
+    background-color: green;
+    border: none;
+    box-shadow: none;
+}
+
+.statusMessageMainContainer.nightMode.failed {
+    color: red;
+    background-color: rgb(238, 156, 156);
+    border: none;
+    box-shadow: none;
+}
+
+.statusMessageText {
+    display: inline-block;
+    width: 85%;
+}
+
+
+@media (min-width: 568px) and (max-width: 1023px) {
+    .statusMessageMainContainer {
+        top: 90px;
+        left: 30px;
+    }
+
+    @keyframes slideSmall {
+        0% {
+            top: -90px;
+        }
+        100% {
+            top: 90px;
+        }
+    }
+}
+
+@media (max-width: 567px) {
+    .statusMessageMainContainer {
+        top: 90px;
+        left: 5%;
+        width: 90%;
+    }
+
+    @keyframes slideSmall {
+        0% {
+            top: -90px;
+        }
+        100% {
+            top: 90px;
+        }
+    }   
+}

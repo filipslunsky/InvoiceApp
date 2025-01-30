@@ -35,11 +35,11 @@ const InvoiceList = () => {
      useEffect(()=> {
         if (addInvoiceStatus === 'success') {
                 dispatch(setStatusMessage({ text: "Invoice added successfully!", visible: true, style: 'success' }));
-                setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 3000);
+                setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 1500);
                 dispatch(resetAddInvoiceStatus());
             } else if (addInvoiceStatus === 'failed') {
                 dispatch(setStatusMessage({ text: "Failed to add invoice. Please try again.", visible: true, style: 'failed' }));
-                setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 3000);
+                setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 1500);
                 dispatch(resetAddInvoiceStatus());
             }
     }, [addInvoiceStatus]);
@@ -47,11 +47,11 @@ const InvoiceList = () => {
     useEffect(()=> {
         if (deleteInvoiceStatus === 'success') {
             dispatch(setStatusMessage({ text: "Invoice deleted successfully!", visible: true, style: 'success' }));
-            setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 3000);
+            setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 1500);
             dispatch(resetDeleteInvoiceStatus());
         } else if (deleteInvoiceStatus === 'failed') {
             dispatch(setStatusMessage({ text: "Failed to delete invoice. Please try again.", visible: true, style: 'failed' }));
-            setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 3000);
+            setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 1500);
             dispatch(resetDeleteInvoiceStatus());
         }
     }, [deleteInvoiceStatus]);

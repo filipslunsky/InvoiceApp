@@ -29,11 +29,11 @@ const InvoiceDetail = () => {
     useEffect(()=> {
         if (editInvoiceStatus === 'success') {
             dispatch(setStatusMessage({ text: "Invoice updated successfully!", visible: true, style: 'success' }));
-            setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 3000);
+            setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 1500);
             dispatch(resetEditInvoiceStatus());
         } else if (editInvoiceStatus === 'failed') {
             dispatch(setStatusMessage({ text: "Failed to update invoice. Please try again.", visible: true, style: 'failed' }));
-            setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 3000);
+            setTimeout(() => dispatch(setStatusMessage({ text: "", visible: false, style: '' })), 1500);
             dispatch(resetEditInvoiceStatus());
         }
     }, [editInvoiceStatus]);
