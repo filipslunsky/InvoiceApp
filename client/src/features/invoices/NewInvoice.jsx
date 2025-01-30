@@ -28,6 +28,9 @@ const NewInvoice = () => {
     const [items, setItems] = useState([{ name: "", quantity: 1, price: 0, total: 0 }]);
     const itemRefs = useRef([]);
 
+    const [missingNumber, setMissingNumber] = useState(false);
+    const [missingDate, setMissingDate] = useState(false);
+
     useEffect(() => {
         itemRefs.current = items.map((_, index) => 
             itemRefs.current[index] || {
@@ -75,6 +78,24 @@ const NewInvoice = () => {
     };
 
     const handleAddNewInvoice = () => {
+        if (toInvoiceNumberRef.current.value === '' || toDateRef.current.value.length === 0) {
+            if (toInvoiceNumberRef.current.value === '') {
+                setMissingNumber(true);
+            } else {
+                setMissingNumber(false);
+            };
+    
+            if (toDateRef.current.value.length === 0) {
+                setMissingDate(true);
+            } else {
+                setMissingDate(false);
+            };
+            return;
+        } else {
+            setMissingNumber(false);
+            setMissingDate(false);
+        };
+
         const dueDate = calculateDueDate(toDateRef.current.value, Number(toTermsRef.current.value));
 
         const issueDate = new Date(toDateRef.current.value).toISOString();
@@ -166,8 +187,8 @@ const NewInvoice = () => {
                                 <input ref={toCountryRef} type="text" className="formInvoiceToCountryInput" />
                             </div>
                             <div className="formInvoiceToDateContainer">
-                                <span className="formInvoiceToDateLable">Invoice Date</span>
-                                <input type="date" ref={toDateRef} className="formInvoiceToDateInput" />
+                                <span className={missingDate ? "formInvoiceToDateLable missingValue" : "formInvoiceToDateLable"}>Invoice Date</span>
+                                <input type="date" ref={toDateRef} className={missingDate ? "formInvoiceToDateInput missingValue" : "formInvoiceToDateInput"} />
                             </div>
                             <div className="formInvoiceToTermsContainer">
                                 <span className="formInvoiceToTermsLable">Payment Terms</span>
@@ -182,8 +203,8 @@ const NewInvoice = () => {
                                 </select>
                             </div>
                             <div className="formInvoiceToInvoiceNumberContainer">
-                                <span className="formInvoiceToInvoiceNumberLable">Invoice Number</span>
-                                <input ref={toInvoiceNumberRef} type="text" className="formInvoiceToInvoiceNumberInput" />
+                                <span className={missingNumber ? "formInvoiceToInvoiceNumberLable missingValue" : "formInvoiceToInvoiceNumberLable"}>Invoice Number</span>
+                                <input ref={toInvoiceNumberRef} type="text" className={missingNumber ? "formInvoiceToInvoiceNumberInput missingValue" : "formInvoiceToInvoiceNumberInput"} />
                             </div>
                             <div className="formInvoiceToDescriptionContainer">
                                 <span className="formInvoiceToDescriptionLable">Description</span>

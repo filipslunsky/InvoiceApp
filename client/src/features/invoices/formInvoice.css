@@ -245,6 +245,18 @@ input:focus, select:focus {
     background-color: #f25552;
 }
 
+.formInvoiceToInvoiceNumberLable.missingValue, .formInvoiceToDateLable.missingValue {
+    color: red;
+}
+
+.formInvoiceToDateInput.missingValue, .formInvoiceToInvoiceNumberInput.missingValue {
+    border: 1px solid red;
+}
+
+.formInvoiceMainContainer.nightMode input.missingValue {
+    border: 1px solid red;
+}
+
 @media (min-width: 568px) and (max-width: 1023px) {
     .formInvoiceMainContainer {
         background-color: white;

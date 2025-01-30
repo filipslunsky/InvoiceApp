@@ -31,6 +31,9 @@ const EditInvoice = ({id}) => {
 
     const itemRefs = useRef([]);
 
+    const [missingNumber, setMissingNumber] = useState(false);
+    const [missingDate, setMissingDate] = useState(false);
+
     useEffect(() => {
         itemRefs.current = items.map((_, index) => 
             itemRefs.current[index] || {
@@ -84,6 +87,13 @@ const EditInvoice = ({id}) => {
     };
 
     const handleEditInvoice = () => {
+        if (toDateRef.current.value === '') {
+            setMissingDate(true);
+            return;
+        } else {
+            setMissingDate(false);
+        };
+        
         const dueDate = calculateDueDate(toDateRef.current.value, Number(toTermsRef.current.value));
 
         const issueDate = new Date(toDateRef.current.value).toISOString();
@@ -181,8 +191,8 @@ const EditInvoice = ({id}) => {
                                 <input defaultValue={thisInvoice.client_country} ref={toCountryRef} type="text" className="formInvoiceToCountryInput" />
                             </div>
                             <div className="formInvoiceToDateContainer">
-                                <span className="formInvoiceToDateLable">Invoice Date</span>
-                                <input defaultValue={thisInvoice.created_at.split('T')[0]} type="date" ref={toDateRef} className="formInvoiceToDateInput" />
+                                <span className={missingDate ? "formInvoiceToDateLable missingValue" : "formInvoiceToDateLable"}>Invoice Date</span>
+                                <input defaultValue={thisInvoice.created_at.split('T')[0]} type="date" ref={toDateRef} className={missingDate ? "formInvoiceToDateInput missingValue" : "formInvoiceToDateInput"} />
                             </div>
                             <div className="formInvoiceToTermsContainer">
                                 <span className="formInvoiceToTermsLable">Payment Terms</span>
