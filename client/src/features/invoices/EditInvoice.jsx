@@ -27,6 +27,7 @@ const EditInvoice = ({id}) => {
     const toDescriptionRef = useRef();
 
     const [items, setItems] = useState(thisInvoice.items || [{ name: "", quantity: 1, price: 0, total: 0 }]);
+    const [totalPrice, setTotalPrice] = useState(items.reduce((sum, item) => Number(sum) + Number(item.total), 0));
 
     const itemRefs = useRef([]);
 
@@ -58,6 +59,9 @@ const EditInvoice = ({id}) => {
         updatedItems[index].total = updatedItems[index].quantity * updatedItems[index].price;
     
         setItems(updatedItems);
+
+        const totalPriceUpdated = updatedItems.reduce((sum, item) => Number(sum) + Number(item.total), 0);
+        setTotalPrice(totalPriceUpdated);
     };
 
     const removeItem = (index) => {
@@ -68,8 +72,6 @@ const EditInvoice = ({id}) => {
     const handleCancelClick = () => {
         dispatch(toggleUpdateInvoice());
     };
-
-    const totalPrice = items.reduce((sum, item) => sum + item.total, 0);
 
     const calculateDueDate = (issueDate, daysToAdd) => {
         const date = new Date(issueDate);
@@ -221,7 +223,9 @@ const EditInvoice = ({id}) => {
                                         ref={itemRefs.current[index]?.quantity}
                                         className="formInvoiceItemQuantityInput"
                                         value={item.quantity}
-                                        onChange={(e) => updateItem(index, "quantity", parseInt(e.target.value) || 0)}
+                                        onChange={(e) => {
+                                            updateItem(index, 'quantity', parseInt(e.target.value) || 0);
+                                          }}
                                     />
                                 </div>
                                 <div className="formInvoiceItemPriceContainer">
@@ -230,7 +234,11 @@ const EditInvoice = ({id}) => {
                                         ref={itemRefs.current[index]?.price}
                                         className="formInvoiceItemPriceInput"
                                         value={item.price}
-                                        onChange={(e) => updateItem(index, "price", parseFloat(e.target.value) || 0)}
+                                        min="0"
+                                        step="0.01"
+                                        onChange={(e) => {
+                                        updateItem(index, 'price', parseFloat(e.target.value) || 0);
+                                        }}
                                     />
                                 </div>
                                 <div className="formInvoiceItemTotalPriceContainer">
@@ -249,7 +257,7 @@ const EditInvoice = ({id}) => {
                     </div>
                     <div className="formInvoiceBottomLineContainer">
                         <span className="formInvoiceBottomLineLable">Total price</span>
-                        <span className="formInvoiceBottomLineValue">£ {Number(totalPrice).toFixed(2)}</span>
+                        <span className="formInvoiceBottomLineValue">£ {formatNumber(totalPrice)}</span>
                     </div>
                     <div className="formInvoiceControlsContainer">
                         <button className="formInvoiceSave" onClick={handleEditInvoice}>Save</button>

@@ -7,6 +7,14 @@
     background-color: #f8f7fc;
 }
 
+.mainStatusMessage {
+    display: inline-block;
+    width: 90%;
+    text-align: center;
+    margin-top: 250px;
+    padding-bottom: 300px;
+}
+
 .invoiceListMainContainer.nightMode, .invoiceListMainContainerSuppressed.nightMode {
     background-color: #141625;
 }

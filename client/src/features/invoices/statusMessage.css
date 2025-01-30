@@ -3,7 +3,7 @@
     height: 100px;
     position: absolute;
     top: 50px;
-    left: 90px;
+    left: 130px;
     z-index: 2;
     border-radius: 20px;
     font-size: 15px;
@@ -16,10 +16,10 @@
 
 @keyframes slideSmall {
     0% {
-        left: -90px;
+        left: -130px;
     }
     100% {
-        left: 90px;
+        left: 130px;
     }
 }
 

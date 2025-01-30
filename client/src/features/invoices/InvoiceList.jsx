@@ -11,6 +11,7 @@ const InvoiceList = () => {
     const dispatch = useDispatch();
 
     const invoices = useSelector(state => state.invoices.invoices);
+    const invoicesStatus = useSelector(state => state.invoices.invoicesStatus);
     const newInvoice = useSelector(state => state.invoices.newInvoice);
     const addInvoiceStatus = useSelector(state => state.invoices.addInvoiceStatus);
     const nightMode = useSelector(state => state.visual.nightMode);
@@ -62,6 +63,18 @@ const InvoiceList = () => {
 
     const handleClickNew = () => {
         dispatch(toggleNewInvoice());
+    };
+
+    if (invoicesStatus === 'pending') {
+        return (
+            <h2 className="mainStatusMessage">Loading...</h2>
+        )
+    };
+
+    if (invoicesStatus === 'failed') {
+        return (
+            <h2 className="mainStatusMessage">Oooops... Failed to load invoices, please try again later.</h2>
+        )
     };
 
     return (
